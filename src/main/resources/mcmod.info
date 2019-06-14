@@ -1,0 +1,15 @@
+[
+{
+  "modid": "modularmagic",
+  "name": "Modular Magic",
+  "description": "Magic mods compat for Modular Machinery",
+  "version": "1.0.0",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Frinn"],
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

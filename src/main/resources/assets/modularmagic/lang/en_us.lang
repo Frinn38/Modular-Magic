@@ -1,3 +1,13 @@
+error.modularmagic.requirement.lifeessence=Error while checking Life Essence requirement
+error.modularmagic.requirement.lifeessence.orb=Missing or Unbound Blood Orb
+error.modularmagic.requirement.lifeessence.lp=Not enough LP
+error.modularmagic.requirement.will=Error while checking Demonic Will requirement
+error.modularmagic.requirement.will.will=Not enough %s will
+
+info.modularmagic.lp=LP
+ïnfo.modularmagic.lppertick=LP per Tick
+info.modularmagic.lifeessence=Life Essence
+
 tile.blockwillproviderinput.name=Demon Will Input Hatch
 tile.blockwillprovideroutput.name=Demon Will Output Hatch
 tile.blocklifeessenceproviderinput.name=Life Essence Input Hatch

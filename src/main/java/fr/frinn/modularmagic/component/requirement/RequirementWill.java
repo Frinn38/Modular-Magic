@@ -11,6 +11,7 @@ import hellfirepvp.modularmachinery.common.crafting.helper.CraftCheck;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
+import net.minecraft.client.resources.I18n;
 import org.lwjgl.Sys;
 
 import javax.annotation.Nonnull;
@@ -62,13 +63,13 @@ public class RequirementWill extends ComponentRequirement {
                     return CraftCheck.success();
                 }
                 else {
-                    return CraftCheck.failure("Not enough " + willType.name + " will");
+                    return CraftCheck.failure(I18n.format("error.modularmagic.requirement.will.will", willType.name));
                 }
 
             case OUTPUT:
                 return CraftCheck.success();
         }
-        return CraftCheck.failure("Error while checking demon will requirement");
+        return CraftCheck.failure(I18n.format("error.modularmagic.requirement.will"));
     }
 
     @Override

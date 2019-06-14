@@ -31,6 +31,8 @@ public class ComponentWill extends ComponentType<RequirementWill> {
         if(requirement.has("willamount") && requirement.get("willamount").isJsonPrimitive() && requirement.get("willamount").getAsJsonPrimitive().isNumber()) {
             if(requirement.has("willtype") && requirement.get("willtype").isJsonPrimitive() && requirement.get("willtype").getAsJsonPrimitive().isString()) {
                 double willRequired = requirement.getAsJsonPrimitive("willamount").getAsDouble();
+                if(willRequired > 100 || willRequired < 0)
+                    throw new JsonParseException("\'willamount\' need to be between 0 and 100");
                 EnumDemonWillType willtype = getWillType(requirement.getAsJsonPrimitive("willtype").getAsString());
                 if (willtype != null)
                     return new RequirementWill(ioType, willRequired, willtype);

@@ -9,6 +9,7 @@ import mezz.jei.api.ingredients.IIngredientRenderer;
 import mezz.jei.plugins.jei.ingredients.DebugIngredientHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -31,11 +32,11 @@ public class LifeEssenceRenderer implements IIngredientRenderer<LifeEssence> {
     @Override
     public List<String> getTooltip(Minecraft minecraft, LifeEssence ingredient, ITooltipFlag tooltipFlag) {
         ArrayList<String> tooltip = new ArrayList<String>();
-        tooltip.add("Life Essence");
+        tooltip.add(I18n.format("info.modularmagic.lifeessence"));
         if(!ingredient.isPerTick())
-            tooltip.add(ingredient.getEssenceAmount() + "LP");
+            tooltip.add(ingredient.getEssenceAmount() + I18n.format("info.modularmagic.lp"));
         else
-            tooltip.add(ingredient.getEssenceAmount() + "LP per Tick");
+            tooltip.add(ingredient.getEssenceAmount() + I18n.format("info.modularmagic.lppertick"));
         return tooltip;
     }
 

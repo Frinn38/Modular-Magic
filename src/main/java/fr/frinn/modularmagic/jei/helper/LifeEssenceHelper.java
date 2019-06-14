@@ -4,11 +4,8 @@ import fr.frinn.modularmagic.ModularMagic;
 import fr.frinn.modularmagic.jei.ingredient.LifeEssence;
 import mezz.jei.api.ingredients.IIngredientHelper;
 
-import javax.annotation.Nullable;
-
 public class LifeEssenceHelper<T extends LifeEssence> implements IIngredientHelper<T> {
 
-    @Nullable
     @Override
     public T getMatch(Iterable<T> ingredients, T ingredientToMatch) {
         return null;
@@ -45,7 +42,7 @@ public class LifeEssenceHelper<T extends LifeEssence> implements IIngredientHelp
     }
 
     @Override
-    public String getErrorInfo(@Nullable T ingredient) {
+    public String getErrorInfo( T ingredient) {
         return null;
     }
 }

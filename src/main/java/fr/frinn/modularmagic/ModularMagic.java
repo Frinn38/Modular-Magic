@@ -1,6 +1,7 @@
 package fr.frinn.modularmagic;
 
 import fr.frinn.modularmagic.block.ModularMagicBlocks;
+import fr.frinn.modularmagic.component.ComponentAspect;
 import fr.frinn.modularmagic.component.ComponentLifeEssence;
 import fr.frinn.modularmagic.component.ComponentWill;
 import fr.frinn.modularmagic.event.EventHandlerModularMagic;
@@ -15,13 +16,15 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = ModularMagic.MODID, name = ModularMagic.NAME, version = ModularMagic.VERSION)
+@Mod(modid = ModularMagic.MODID, name = ModularMagic.NAME, version = ModularMagic.VERSION, dependencies = "required-after:modularmachinery")
 public class ModularMagic {
     public static final String MODID = "modularmagic";
     public static final String NAME = "Modular Magic";
-    public static final String VERSION = "1.0.0";
+    public static final String VERSION = "1.1.0";
 
     public static boolean bloodmagicLoaded = false;
+    public static boolean thaumcraftLoaded = false;
+    public static boolean thaumicJEILoaded = false;
 
     @SidedProxy(modId = MODID, clientSide = "fr.frinn.modularmagic.proxy.ClientProxy", serverSide = "fr.frinn.modularmagic.proxy.ServerProxy")
     public static CommonProxy proxy;
@@ -38,9 +41,15 @@ public class ModularMagic {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         bloodmagicLoaded = Loader.isModLoaded("bloodmagic");
-        if(bloodmagicLoaded)
+        if(bloodmagicLoaded) {
             ComponentType.Registry.register(new ComponentWill());
             ComponentType.Registry.register(new ComponentLifeEssence());
+        }
+        thaumcraftLoaded = Loader.isModLoaded("thaumcraft");
+        thaumicJEILoaded = Loader.isModLoaded("thaumicjei");
+        if(thaumcraftLoaded) {
+            ComponentType.Registry.register(new ComponentAspect());
+        }
         proxy.preInit();
     }
 

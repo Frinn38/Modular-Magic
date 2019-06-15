@@ -25,12 +25,20 @@ public class ModularMagicBlocks {
     public static BlockLifeEssenceProviderInput blockLifeEssenceProviderInput = new BlockLifeEssenceProviderInput();
     public static BlockLifeEssenceProviderOutput blockLifeEssenceProviderOutput = new BlockLifeEssenceProviderOutput();
 
+    public static BlockAspectProviderInput blockAspectProviderInput = new BlockAspectProviderInput();
+    public static BlockAspectProviderOutput blockAspectProviderOutput = new BlockAspectProviderOutput();
+
     public static void initBlocks() {
         if(ModularMagic.bloodmagicLoaded) {
             registerBlock("blockwillproviderinput", blockWillProviderInput, new ItemBlockMachineComponent(blockWillProviderInput));
             registerBlock("blockwillprovideroutput", blockWillProviderOutput, new ItemBlockMachineComponent(blockWillProviderOutput));
             registerBlock("blocklifeessenceproviderinput", blockLifeEssenceProviderInput, new ItemBlockMachineComponent(blockLifeEssenceProviderInput));
             registerBlock("blocklifeessenceprovideroutput", blockLifeEssenceProviderOutput, new ItemBlockMachineComponent(blockLifeEssenceProviderOutput));
+        }
+
+        if(ModularMagic.thaumcraftLoaded) {
+            registerBlock("blockaspectproviderinput", blockAspectProviderInput, new ItemBlockMachineComponent(blockAspectProviderInput));
+            registerBlock("blockaspectprovideroutput", blockAspectProviderOutput, new ItemBlockMachineComponent(blockAspectProviderOutput));
         }
     }
 

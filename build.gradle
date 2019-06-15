@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.0.0"
+version = "1.1.0"
 group = "fr.frinn.modularmagic" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "modularmagic"
 
@@ -37,6 +37,7 @@ repositories {
     maven { url "https://maven.hellfiredev.net"}
     maven { url "http://dvs1.progwml6.com/files/maven"}
     maven { url "http://tehnut.info/maven" }
+    maven { url "http://minecraft.curseforge.com/api/maven/"}
 }
 
 dependencies {
@@ -64,6 +65,7 @@ dependencies {
     deobfCompile "hellfirepvp.modularmachinery:modularmachinery:1.12.2-1.10.0-v38"
     deobfCompile "hellfirepvp.astralsorcery:astralsorcery:1.12.2-1.10.19-v142"
     deobfCompile "com.wayoftime.bloodmagic:BloodMagic:1.12.2-2.4.1-103"
+    deobfCompile "thaumcraft:Thaumcraft:1.12.2:6.1.BETA26"
 }
 
 processResources {

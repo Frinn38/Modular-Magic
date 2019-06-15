@@ -9,7 +9,6 @@ import hellfirepvp.modularmachinery.common.crafting.helper.CraftCheck;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
-import net.minecraft.client.resources.I18n;
 import thaumcraft.api.aspects.Aspect;
 
 import javax.annotation.Nonnull;
@@ -57,13 +56,13 @@ public class RequirementAspect extends ComponentRequirement {
                 if(provider.doesContainerContainAmount(this.aspect, this.amount))
                     return CraftCheck.success();
                 else
-                    return CraftCheck.failure(I18n.format("error.modularmagic.requirement.aspect.less", this.aspect.getName()));
+                    return CraftCheck.failure("error.modularmagic.requirement.aspect.less");
 
             case OUTPUT:
                 if(provider.doesContainerAccept(this.aspect))
                     return CraftCheck.success();
                 else
-                    return CraftCheck.failure(I18n.format("error.modularmagic.requirement.aspect.out", this.aspect.getName()));
+                    return CraftCheck.failure("error.modularmagic.requirement.aspect.out");
         }
         return CraftCheck.skipComponent();
     }

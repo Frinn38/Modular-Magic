@@ -12,7 +12,6 @@ import hellfirepvp.modularmachinery.common.crafting.helper.CraftCheck;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
-import net.minecraft.client.resources.I18n;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -64,7 +63,7 @@ public class RequirementLifeEssence extends ComponentRequirement.PerTick {
         TileLifeEssenceProvider essenceProvider = (TileLifeEssenceProvider)component.getContainerProvider();
 
         if(essenceProvider.getSoulNetwork() == null)
-            return CraftCheck.failure(I18n.format("error.modularmagic.requirement.lifeessence.orb"));
+            return CraftCheck.failure("error.modularmagic.requirement.lifeessence.orb");
 
         switch (getActionType()) {
             case INPUT:
@@ -72,13 +71,13 @@ public class RequirementLifeEssence extends ComponentRequirement.PerTick {
                     return CraftCheck.success();
                 }
                 else {
-                    return CraftCheck.failure(I18n.format("error.modularmagic.requirement.lifeessence.lp"));
+                    return CraftCheck.failure("error.modularmagic.requirement.lifeessence.lp");
                 }
 
             case OUTPUT:
                 return CraftCheck.success();
         }
-        return CraftCheck.failure(I18n.format("error.modularmagic.requirement.lifeessence"));
+        return CraftCheck.failure("error.modularmagic.requirement.lifeessence");
     }
 
     @Override
@@ -93,7 +92,7 @@ public class RequirementLifeEssence extends ComponentRequirement.PerTick {
             return CraftCheck.success();
         }
         else {
-            return CraftCheck.failure(I18n.format("error.modularmagic.requirement.lifeessence.lp"));
+            return CraftCheck.failure("error.modularmagic.requirement.lifeessence.lp");
         }
 
     }
@@ -112,7 +111,7 @@ public class RequirementLifeEssence extends ComponentRequirement.PerTick {
                     }
                     else {
                         flag = false;
-                        return CraftCheck.failure(I18n.format("error.modularmagic.requirement.lifeessence.lp"));
+                        return CraftCheck.failure("error.modularmagic.requirement.lifeessence.lp");
                     }
                 case OUTPUT:
                     essenceProvider.getSoulNetwork().add(new SoulTicket(essenceAmount), essenceProvider.getOrbCapacity());

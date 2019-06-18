@@ -1,17 +1,14 @@
-package fr.frinn.modularmagic.jei.render;
+package fr.frinn.modularmagic.integration.jei.render;
 
 import WayofTime.bloodmagic.BloodMagic;
-import com.google.common.collect.Lists;
 import fr.frinn.modularmagic.integration.JeiPlugin;
-import fr.frinn.modularmagic.jei.ingredient.LifeEssence;
+import fr.frinn.modularmagic.integration.jei.ingredient.LifeEssence;
 import mezz.jei.api.gui.IDrawableBuilder;
 import mezz.jei.api.ingredients.IIngredientRenderer;
-import mezz.jei.plugins.jei.ingredients.DebugIngredientHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;

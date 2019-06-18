@@ -1,7 +1,7 @@
 package fr.frinn.modularmagic.component.requirement;
 
 import com.google.common.collect.Lists;
-import fr.frinn.modularmagic.jei.component.JEIComponentAspect;
+import fr.frinn.modularmagic.integration.jei.component.JEIComponentAspect;
 import fr.frinn.modularmagic.tile.TileAspectProvider;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;
 import hellfirepvp.modularmachinery.common.crafting.helper.ComponentRequirement;

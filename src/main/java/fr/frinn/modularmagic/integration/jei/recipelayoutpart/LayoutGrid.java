@@ -1,37 +1,37 @@
-package fr.frinn.modularmagic.jei.recipelayoutpart;
+package fr.frinn.modularmagic.integration.jei.recipelayoutpart;
 
-import fr.frinn.modularmagic.jei.ingredient.DemonWill;
-import fr.frinn.modularmagic.jei.render.DemonWillRenderer;
+import fr.frinn.modularmagic.integration.jei.ingredient.Grid;
+import fr.frinn.modularmagic.integration.jei.render.GridRenderer;
 import hellfirepvp.modularmachinery.common.integration.recipe.RecipeLayoutPart;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import net.minecraft.client.Minecraft;
 
 import java.awt.*;
 
-public class LayoutWill extends RecipeLayoutPart<DemonWill> {
+public class LayoutGrid extends RecipeLayoutPart<Grid> {
 
-    public LayoutWill(Point offset) {
+    public LayoutGrid(Point offset) {
         super(offset);
     }
 
     @Override
     public int getComponentWidth() {
-        return 18;
+        return 16;
     }
 
     @Override
     public int getComponentHeight() {
-        return 18;
+        return 16;
     }
 
     @Override
-    public Class<DemonWill> getLayoutTypeClass() {
-        return DemonWill.class;
+    public Class<Grid> getLayoutTypeClass() {
+        return Grid.class;
     }
 
     @Override
-    public IIngredientRenderer provideIngredientRenderer() {
-        return new DemonWillRenderer();
+    public IIngredientRenderer<Grid> provideIngredientRenderer() {
+        return new GridRenderer();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class LayoutWill extends RecipeLayoutPart<DemonWill> {
 
     @Override
     public int getMaxHorizontalCount() {
-        return 2;
+        return 1;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class LayoutWill extends RecipeLayoutPart<DemonWill> {
 
     @Override
     public int getComponentHorizontalSortingOrder() {
-        return 10;
+        return 0;
     }
 
     @Override

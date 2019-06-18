@@ -1,9 +1,9 @@
-package fr.frinn.modularmagic.jei.component;
+package fr.frinn.modularmagic.integration.jei.component;
 
 import com.google.common.collect.Lists;
 import fr.frinn.modularmagic.component.requirement.RequirementWill;
-import fr.frinn.modularmagic.jei.ingredient.DemonWill;
-import fr.frinn.modularmagic.jei.recipelayoutpart.LayoutWill;
+import fr.frinn.modularmagic.integration.jei.ingredient.DemonWill;
+import fr.frinn.modularmagic.integration.jei.recipelayoutpart.LayoutWill;
 import hellfirepvp.modularmachinery.common.crafting.helper.ComponentRequirement;
 import hellfirepvp.modularmachinery.common.integration.recipe.RecipeLayoutPart;
 

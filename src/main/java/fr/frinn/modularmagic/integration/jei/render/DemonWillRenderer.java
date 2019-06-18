@@ -1,9 +1,9 @@
-package fr.frinn.modularmagic.jei.render;
+package fr.frinn.modularmagic.integration.jei.render;
 
 import WayofTime.bloodmagic.BloodMagic;
 import WayofTime.bloodmagic.soul.EnumDemonWillType;
 import fr.frinn.modularmagic.integration.JeiPlugin;
-import fr.frinn.modularmagic.jei.ingredient.DemonWill;
+import fr.frinn.modularmagic.integration.jei.ingredient.DemonWill;
 import mezz.jei.api.gui.IDrawableBuilder;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import net.minecraft.client.Minecraft;

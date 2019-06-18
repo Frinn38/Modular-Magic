@@ -5,10 +5,14 @@ error.modularmagic.requirement.will=Error while checking Demonic Will requiremen
 error.modularmagic.requirement.will.less=Not enough will
 error.modularmagic.requirement.aspect.less=Not enough aspect
 error.modularmagic.requirement.aspect.out=Can't output aspect
+error.modularmagic.requirement.grid.less=Not enough grid power
+error.modularmagic.requirement.grid.missingprovider=No Grid Power Hatch found
 
 info.modularmagic.lp=LP
 ïnfo.modularmagic.lppertick=LP per Tick
 info.modularmagic.lifeessence=Life Essence
+info.modularmagic.grid.required=Need %f GP
+info.modularmagic.grid.produced=Produce % GP
 
 tile.blockwillproviderinput.name=Demon Will Input Hatch
 tile.blockwillprovideroutput.name=Demon Will Output Hatch
@@ -16,3 +20,5 @@ tile.blocklifeessenceproviderinput.name=Life Essence Input Hatch
 tile.blocklifeessenceprovideroutput.name=Life Essence Output Hatch
 tile.blockaspectproviderinput.name=Essentia Input Hatch
 tile.blockaspectprovideroutput.name=Essentia Output Hatch
+tile.blockgridproviderinput.name=Grid Power Input Hatch
+tile.blockgridprovideroutput.name=Grid Power Output Hatch

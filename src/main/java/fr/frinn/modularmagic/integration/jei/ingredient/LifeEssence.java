@@ -1,4 +1,4 @@
-package fr.frinn.modularmagic.jei.ingredient;
+package fr.frinn.modularmagic.integration.jei.ingredient;
 
 public class LifeEssence {
 

@@ -2,7 +2,7 @@ package fr.frinn.modularmagic.component.requirement;
 
 import WayofTime.bloodmagic.soul.EnumDemonWillType;
 import com.google.common.collect.Lists;
-import fr.frinn.modularmagic.jei.component.JEIComponentWill;
+import fr.frinn.modularmagic.integration.jei.component.JEIComponentWill;
 import fr.frinn.modularmagic.tile.machinecomponent.MachineComponentWillProvider;
 import fr.frinn.modularmagic.tile.TileWillProvider;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;

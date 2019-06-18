@@ -1,40 +1,29 @@
-package fr.frinn.modularmagic.jei.helper;
+package fr.frinn.modularmagic.integration.jei.helper;
 
-import com.google.common.collect.Iterables;
 import fr.frinn.modularmagic.ModularMagic;
+import fr.frinn.modularmagic.integration.jei.ingredient.LifeEssence;
 import mezz.jei.api.ingredients.IIngredientHelper;
-import thaumcraft.api.aspects.AspectList;
 
-import javax.annotation.Nullable;
+public class LifeEssenceHelper<T extends LifeEssence> implements IIngredientHelper<T> {
 
-public class AspectHelper<T extends AspectList> implements IIngredientHelper<T> {
-
-    @Nullable
     @Override
     public T getMatch(Iterable<T> ingredients, T ingredientToMatch) {
-        if(Iterables.isEmpty(ingredients))
-            return null;
-
-        for(T list : ingredients) {
-            if(list.getAspects()[0].getTag().equalsIgnoreCase(ingredientToMatch.getAspects()[0].getTag()))
-                return list;
-        }
         return null;
     }
 
     @Override
     public String getDisplayName(T ingredient) {
-        return ingredient.getAspects()[0].getName();
+        return "Life Essence";
     }
 
     @Override
     public String getUniqueId(T ingredient) {
-        return ingredient.getAspects()[0].getTag();
+        return "lifeessence";
     }
 
     @Override
     public String getWildcardId(T ingredient) {
-        return ingredient.getAspects()[0].getTag();
+        return "lifeessence";
     }
 
     @Override
@@ -53,7 +42,7 @@ public class AspectHelper<T extends AspectList> implements IIngredientHelper<T> 
     }
 
     @Override
-    public String getErrorInfo(@Nullable T ingredient) {
+    public String getErrorInfo( T ingredient) {
         return null;
     }
 }

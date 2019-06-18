@@ -1,8 +1,8 @@
-package fr.frinn.modularmagic.jei.component;
+package fr.frinn.modularmagic.integration.jei.component;
 
 import com.google.common.collect.Lists;
 import fr.frinn.modularmagic.component.requirement.RequirementAspect;
-import fr.frinn.modularmagic.jei.recipelayoutpart.LayoutAspect;
+import fr.frinn.modularmagic.integration.jei.recipelayoutpart.LayoutAspect;
 import hellfirepvp.modularmachinery.common.crafting.helper.ComponentRequirement;
 import hellfirepvp.modularmachinery.common.integration.recipe.RecipeLayoutPart;
 import thaumcraft.api.aspects.AspectList;

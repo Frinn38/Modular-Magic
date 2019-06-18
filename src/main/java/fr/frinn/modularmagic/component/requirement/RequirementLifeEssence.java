@@ -3,7 +3,7 @@ package fr.frinn.modularmagic.component.requirement;
 import WayofTime.bloodmagic.core.data.SoulNetwork;
 import WayofTime.bloodmagic.core.data.SoulTicket;
 import com.google.common.collect.Lists;
-import fr.frinn.modularmagic.jei.component.JEIComponentLifeEssence;
+import fr.frinn.modularmagic.integration.jei.component.JEIComponentLifeEssence;
 import fr.frinn.modularmagic.tile.TileLifeEssenceProvider;
 import fr.frinn.modularmagic.tile.machinecomponent.MachineComponentLifeEssenceProvider;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;

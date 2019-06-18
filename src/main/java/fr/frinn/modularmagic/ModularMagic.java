@@ -2,6 +2,7 @@ package fr.frinn.modularmagic;
 
 import fr.frinn.modularmagic.block.ModularMagicBlocks;
 import fr.frinn.modularmagic.component.ComponentAspect;
+import fr.frinn.modularmagic.component.ComponentGrid;
 import fr.frinn.modularmagic.component.ComponentLifeEssence;
 import fr.frinn.modularmagic.component.ComponentWill;
 import fr.frinn.modularmagic.event.EventHandlerModularMagic;
@@ -20,11 +21,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class ModularMagic {
     public static final String MODID = "modularmagic";
     public static final String NAME = "Modular Magic";
-    public static final String VERSION = "1.1.1";
+    public static final String VERSION = "1.2.0";
 
     public static boolean bloodmagicLoaded = false;
     public static boolean thaumcraftLoaded = false;
     public static boolean thaumicJEILoaded = false;
+    public static boolean extraUtils2Loaded = false;
 
     @SidedProxy(modId = MODID, clientSide = "fr.frinn.modularmagic.proxy.ClientProxy", serverSide = "fr.frinn.modularmagic.proxy.ServerProxy")
     public static CommonProxy proxy;
@@ -49,6 +51,10 @@ public class ModularMagic {
         thaumicJEILoaded = Loader.isModLoaded("thaumicjei");
         if(thaumcraftLoaded) {
             ComponentType.Registry.register(new ComponentAspect());
+        }
+        extraUtils2Loaded = Loader.isModLoaded("extrautils2");
+        if(extraUtils2Loaded) {
+            ComponentType.Registry.register(new ComponentGrid());
         }
         proxy.preInit();
     }

@@ -5,6 +5,7 @@ import fr.frinn.modularmagic.block.ModularMagicBlocks;
 import fr.frinn.modularmagic.client.gui.GuiHandler;
 import fr.frinn.modularmagic.item.ModularMagicItems;
 import fr.frinn.modularmagic.tile.TileAspectProvider;
+import fr.frinn.modularmagic.tile.TileGridProvider;
 import fr.frinn.modularmagic.tile.TileLifeEssenceProvider;
 import fr.frinn.modularmagic.tile.TileWillProvider;
 import net.minecraft.util.ResourceLocation;
@@ -22,6 +23,8 @@ public class CommonProxy {
         GameRegistry.registerTileEntity(TileLifeEssenceProvider.Output.class, new ResourceLocation(ModularMagic.MODID, "tilelifeessenceprovideroutput"));
         GameRegistry.registerTileEntity(TileAspectProvider.Input.class, new ResourceLocation(ModularMagic.MODID, "tileaspectproviderinput"));
         GameRegistry.registerTileEntity(TileAspectProvider.Output.class, new ResourceLocation(ModularMagic.MODID, "tileaspectprovideroutput"));
+        GameRegistry.registerTileEntity(TileGridProvider.Input.class, new ResourceLocation(ModularMagic.MODID, "tilegridproviderinput"));
+        GameRegistry.registerTileEntity(TileGridProvider.Output.class, new ResourceLocation(ModularMagic.MODID, "tilegridprovideroutput"));
         NetworkRegistry.INSTANCE.registerGuiHandler(ModularMagic.INSTANCE, new GuiHandler());
     }
 

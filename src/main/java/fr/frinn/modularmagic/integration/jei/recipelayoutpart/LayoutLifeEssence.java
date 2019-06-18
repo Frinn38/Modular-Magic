@@ -1,40 +1,37 @@
-package fr.frinn.modularmagic.jei.recipelayoutpart;
+package fr.frinn.modularmagic.integration.jei.recipelayoutpart;
 
+import fr.frinn.modularmagic.integration.jei.ingredient.LifeEssence;
+import fr.frinn.modularmagic.integration.jei.render.LifeEssenceRenderer;
 import hellfirepvp.modularmachinery.common.integration.recipe.RecipeLayoutPart;
-import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IIngredientRenderer;
-import mezz.jei.api.recipe.IIngredientType;
-import mezz.jei.plugins.jei.JEIInternalPlugin;
-import mezz.jei.runtime.JeiHelpers;
 import net.minecraft.client.Minecraft;
-import thaumcraft.api.aspects.AspectList;
 
 import java.awt.*;
 
-public class LayoutAspect extends RecipeLayoutPart<AspectList> {
+public class LayoutLifeEssence extends RecipeLayoutPart<LifeEssence> {
 
-    public LayoutAspect(Point offset) {
+    public LayoutLifeEssence(Point offset) {
         super(offset);
     }
 
     @Override
     public int getComponentWidth() {
-        return 16;
+        return 18;
     }
 
     @Override
     public int getComponentHeight() {
-        return 16;
+        return 18;
     }
 
     @Override
-    public Class<AspectList> getLayoutTypeClass() {
-        return AspectList.class;
+    public Class<LifeEssence> getLayoutTypeClass() {
+        return LifeEssence.class;
     }
 
     @Override
-    public IIngredientRenderer<AspectList> provideIngredientRenderer() {
-        return JEIInternalPlugin.ingredientRegistry.getIngredientRenderer(new AspectList());
+    public IIngredientRenderer<LifeEssence> provideIngredientRenderer() {
+        return new LifeEssenceRenderer();
     }
 
     @Override
@@ -49,7 +46,7 @@ public class LayoutAspect extends RecipeLayoutPart<AspectList> {
 
     @Override
     public int getMaxHorizontalCount() {
-        return 4;
+        return 1;
     }
 
     @Override

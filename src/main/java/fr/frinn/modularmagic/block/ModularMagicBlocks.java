@@ -19,17 +19,13 @@ public class ModularMagicBlocks {
     private static ArrayList<Block> BLOCKS = new ArrayList<Block>();
     public static  ArrayList<BlockDynamicColor> COLOR_BLOCKS = new ArrayList<>();
 
-    public static BlockWillProviderInput blockWillProviderInput = new BlockWillProviderInput();
-    public static BlockWillProviderOutput blockWillProviderOutput = new BlockWillProviderOutput();
-
-    public static BlockLifeEssenceProviderInput blockLifeEssenceProviderInput = new BlockLifeEssenceProviderInput();
-    public static BlockLifeEssenceProviderOutput blockLifeEssenceProviderOutput = new BlockLifeEssenceProviderOutput();
-
-    public static BlockAspectProviderInput blockAspectProviderInput = new BlockAspectProviderInput();
-    public static BlockAspectProviderOutput blockAspectProviderOutput = new BlockAspectProviderOutput();
-
     public static void initBlocks() {
         if(ModularMagic.bloodmagicLoaded) {
+            BlockWillProviderInput blockWillProviderInput = new BlockWillProviderInput();
+            BlockWillProviderOutput blockWillProviderOutput = new BlockWillProviderOutput();
+            BlockLifeEssenceProviderInput blockLifeEssenceProviderInput = new BlockLifeEssenceProviderInput();
+            BlockLifeEssenceProviderOutput blockLifeEssenceProviderOutput = new BlockLifeEssenceProviderOutput();
+
             registerBlock("blockwillproviderinput", blockWillProviderInput, new ItemBlockMachineComponent(blockWillProviderInput));
             registerBlock("blockwillprovideroutput", blockWillProviderOutput, new ItemBlockMachineComponent(blockWillProviderOutput));
             registerBlock("blocklifeessenceproviderinput", blockLifeEssenceProviderInput, new ItemBlockMachineComponent(blockLifeEssenceProviderInput));
@@ -37,8 +33,19 @@ public class ModularMagicBlocks {
         }
 
         if(ModularMagic.thaumcraftLoaded) {
+            BlockAspectProviderInput blockAspectProviderInput = new BlockAspectProviderInput();
+            BlockAspectProviderOutput blockAspectProviderOutput = new BlockAspectProviderOutput();
+
             registerBlock("blockaspectproviderinput", blockAspectProviderInput, new ItemBlockMachineComponent(blockAspectProviderInput));
             registerBlock("blockaspectprovideroutput", blockAspectProviderOutput, new ItemBlockMachineComponent(blockAspectProviderOutput));
+        }
+
+        if(ModularMagic.extraUtils2Loaded) {
+            BlockGridProviderInput blockGridProviderInput = new BlockGridProviderInput();
+            BlockGridProviderOutput blockGridProviderOutput = new BlockGridProviderOutput();
+
+            registerBlock("blockgridproviderinput", blockGridProviderInput, new ItemBlockMachineComponent(blockGridProviderInput));
+            registerBlock("blockgridprovideroutput", blockGridProviderOutput, new ItemBlockMachineComponent(blockGridProviderOutput));
         }
     }
 

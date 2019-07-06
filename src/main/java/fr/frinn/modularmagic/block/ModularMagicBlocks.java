@@ -47,6 +47,14 @@ public class ModularMagicBlocks {
             registerBlock("blockgridproviderinput", blockGridProviderInput, new ItemBlockMachineComponent(blockGridProviderInput));
             registerBlock("blockgridprovideroutput", blockGridProviderOutput, new ItemBlockMachineComponent(blockGridProviderOutput));
         }
+
+        if(ModularMagic.astralLoaded) {
+            BlockStarlightProviderInput blockStarlightProviderInput = new BlockStarlightProviderInput();
+            BlockStarlightProviderOutput blockStarlightProviderOutput = new BlockStarlightProviderOutput();
+
+            registerBlock("blockstarlightproviderinput", blockStarlightProviderInput, new ItemBlockMachineComponent(blockStarlightProviderInput));
+            registerBlock("blockstarlightprovideroutput", blockStarlightProviderOutput, new ItemBlockMachineComponent(blockStarlightProviderOutput));
+        }
     }
 
     private static void registerBlock(String id, Block block, ItemBlock itemBlock) {

@@ -4,10 +4,7 @@ import fr.frinn.modularmagic.ModularMagic;
 import fr.frinn.modularmagic.block.ModularMagicBlocks;
 import fr.frinn.modularmagic.client.gui.GuiHandler;
 import fr.frinn.modularmagic.item.ModularMagicItems;
-import fr.frinn.modularmagic.tile.TileAspectProvider;
-import fr.frinn.modularmagic.tile.TileGridProvider;
-import fr.frinn.modularmagic.tile.TileLifeEssenceProvider;
-import fr.frinn.modularmagic.tile.TileWillProvider;
+import fr.frinn.modularmagic.tile.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -31,6 +28,10 @@ public class CommonProxy {
         if(ModularMagic.extraUtils2Loaded) {
             GameRegistry.registerTileEntity(TileGridProvider.Input.class, new ResourceLocation(ModularMagic.MODID, "tilegridproviderinput"));
             GameRegistry.registerTileEntity(TileGridProvider.Output.class, new ResourceLocation(ModularMagic.MODID, "tilegridprovideroutput"));
+        }
+        if(ModularMagic.astralLoaded) {
+            GameRegistry.registerTileEntity(TileStarlightInput.class, new ResourceLocation(ModularMagic.MODID, "tilestarlightinput"));
+            GameRegistry.registerTileEntity(TileStarlightOutput.class, new ResourceLocation(ModularMagic.MODID, "tilestarlightoutput"));
         }
         NetworkRegistry.INSTANCE.registerGuiHandler(ModularMagic.INSTANCE, new GuiHandler());
     }

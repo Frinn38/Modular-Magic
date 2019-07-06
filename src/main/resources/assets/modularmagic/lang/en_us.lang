@@ -7,6 +7,10 @@ error.modularmagic.requirement.aspect.less=Not enough aspect
 error.modularmagic.requirement.aspect.out=Can't output aspect
 error.modularmagic.requirement.grid.less=Not enough grid power
 error.modularmagic.requirement.grid.missingprovider=No Grid Power Hatch found
+error.modularmagic.requirement.starlight.less=Not enough Starlight
+error.modularmagic.requirement.starlight.missingprovider=No Starlight Hatch found
+
+error.modularmagic.requirement.invalid=Invalid IO Type
 
 info.modularmagic.lp=LP
 ïnfo.modularmagic.lppertick=LP per Tick
@@ -22,3 +26,5 @@ tile.blockaspectproviderinput.name=Essentia Input Hatch
 tile.blockaspectprovideroutput.name=Essentia Output Hatch
 tile.blockgridproviderinput.name=Grid Power Input Hatch
 tile.blockgridprovideroutput.name=Grid Power Output Hatch
+tile.blockstarlightproviderinput.name=Starlight Collector Hatch
+tile.blockstarlightprovideroutput.name=Starlight Distributor Hatch

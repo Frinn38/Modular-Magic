@@ -1,11 +1,8 @@
 package fr.frinn.modularmagic.item;
 
 import fr.frinn.modularmagic.ModularMagic;
-import hellfirepvp.modularmachinery.common.block.BlockDynamicColor;
-import hellfirepvp.modularmachinery.common.block.BlockVariants;
 import hellfirepvp.modularmachinery.common.item.ItemDynamicColor;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -19,7 +16,7 @@ import java.util.ArrayList;
 
 public class ModularMagicItems {
 
-    private static ArrayList<Item> ITEMS = new ArrayList<Item>();
+    private static ArrayList<Item> ITEMS = new ArrayList<>();
     public static ArrayList<ItemDynamicColor> COLOR_ITEMS = new ArrayList<>();
 
     public static void initItems() {

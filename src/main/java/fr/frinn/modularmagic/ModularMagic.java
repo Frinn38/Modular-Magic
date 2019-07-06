@@ -1,12 +1,10 @@
 package fr.frinn.modularmagic;
 
 import fr.frinn.modularmagic.block.ModularMagicBlocks;
-import fr.frinn.modularmagic.component.ComponentAspect;
-import fr.frinn.modularmagic.component.ComponentGrid;
-import fr.frinn.modularmagic.component.ComponentLifeEssence;
-import fr.frinn.modularmagic.component.ComponentWill;
+import fr.frinn.modularmagic.component.*;
 import fr.frinn.modularmagic.event.EventHandlerModularMagic;
 import fr.frinn.modularmagic.item.ModularMagicItems;
+import fr.frinn.modularmagic.network.StarlightMessage;
 import fr.frinn.modularmagic.proxy.CommonProxy;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,23 +14,29 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(modid = ModularMagic.MODID, name = ModularMagic.NAME, version = ModularMagic.VERSION, dependencies = "required-after:modularmachinery")
 public class ModularMagic {
     public static final String MODID = "modularmagic";
     public static final String NAME = "Modular Magic";
-    public static final String VERSION = "1.2.1";
+    public static final String VERSION = "1.3.0";
 
     public static boolean bloodmagicLoaded = false;
     public static boolean thaumcraftLoaded = false;
     public static boolean thaumicJEILoaded = false;
     public static boolean extraUtils2Loaded = false;
+    public static boolean astralLoaded = false;
 
     @SidedProxy(modId = MODID, clientSide = "fr.frinn.modularmagic.proxy.ClientProxy", serverSide = "fr.frinn.modularmagic.proxy.ServerProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance(MODID)
     public static ModularMagic INSTANCE;
+
+    public static final SimpleNetworkWrapper NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 
     public ModularMagic() {
         MinecraftForge.EVENT_BUS.register(ModularMagicBlocks.class);
@@ -56,6 +60,12 @@ public class ModularMagic {
         if(extraUtils2Loaded) {
             ComponentType.Registry.register(new ComponentGrid());
         }
+        astralLoaded = Loader.isModLoaded("astralsorcery");
+        if(astralLoaded) {
+            ComponentType.Registry.register(new ComponentStarlight());
+        }
+        NETWORK.registerMessage(StarlightMessage.StarlightMessageHandler.class, StarlightMessage.class, 0, Side.SERVER);
+        NETWORK.registerMessage(StarlightMessage.StarlightMessageHandler.class, StarlightMessage.class, 0, Side.CLIENT);
         proxy.preInit();
     }
 

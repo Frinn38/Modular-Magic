@@ -2,6 +2,7 @@ package fr.frinn.modularmagic.client.gui;
 
 import fr.frinn.modularmagic.container.ContainerLifeEssence;
 import fr.frinn.modularmagic.tile.TileLifeEssenceProvider;
+import fr.frinn.modularmagic.tile.TileStarlightInput;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -12,22 +13,26 @@ import javax.annotation.Nullable;
 public class GuiHandler implements IGuiHandler {
 
     public static final int GUI_ESSENCE_PROVIDER = 0;
+    public static final int GUI_STARLIGHT_PROVIDER = 1;
 
     @Nullable
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        if(ID == GUI_ESSENCE_PROVIDER)
-            return new ContainerLifeEssence((TileLifeEssenceProvider) world.getTileEntity(new BlockPos(x, y, z)), player);
-
+        switch (ID) {
+            case GUI_ESSENCE_PROVIDER :
+                return new ContainerLifeEssence((TileLifeEssenceProvider) world.getTileEntity(new BlockPos(x, y, z)), player);
+        }
         return null;
     }
 
     @Nullable
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        if(ID == GUI_ESSENCE_PROVIDER)
-            return new GuiContainerLifeEssence((TileLifeEssenceProvider) world.getTileEntity(new BlockPos(x, y, z)), player);
-
+        BlockPos pos = new BlockPos(x, y, z);
+        switch (ID) {
+            case GUI_ESSENCE_PROVIDER :
+                return new GuiContainerLifeEssence((TileLifeEssenceProvider) world.getTileEntity(new BlockPos(x, y, z)), player);
+        }
         return null;
     }
 }

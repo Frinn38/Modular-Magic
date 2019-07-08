@@ -1,8 +1,7 @@
 package fr.frinn.modularmagic.client.gui;
 
-import fr.frinn.modularmagic.container.ContainerLifeEssence;
-import fr.frinn.modularmagic.tile.TileLifeEssenceProvider;
-import fr.frinn.modularmagic.tile.TileStarlightInput;
+import fr.frinn.modularmagic.common.container.ContainerLifeEssence;
+import fr.frinn.modularmagic.common.tile.TileLifeEssenceProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

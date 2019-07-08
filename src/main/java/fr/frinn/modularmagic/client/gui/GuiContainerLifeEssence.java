@@ -1,7 +1,7 @@
 package fr.frinn.modularmagic.client.gui;
 
-import fr.frinn.modularmagic.container.ContainerLifeEssence;
-import fr.frinn.modularmagic.tile.TileLifeEssenceProvider;
+import fr.frinn.modularmagic.common.container.ContainerLifeEssence;
+import fr.frinn.modularmagic.common.tile.TileLifeEssenceProvider;
 import hellfirepvp.modularmachinery.ModularMachinery;
 import hellfirepvp.modularmachinery.client.gui.GuiContainerBase;
 import net.minecraft.client.renderer.GlStateManager;

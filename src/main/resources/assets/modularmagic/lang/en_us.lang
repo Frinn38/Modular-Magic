@@ -9,6 +9,9 @@ error.modularmagic.requirement.grid.less=Not enough grid power
 error.modularmagic.requirement.grid.missingprovider=No Grid Power Hatch found
 error.modularmagic.requirement.starlight.less=Not enough Starlight
 error.modularmagic.requirement.starlight.missingprovider=No Starlight Hatch found
+error.modularmagic.requirement.constellation.missingprovider=No Constellation Detector Hatch found
+error.modularmagic.requirement.constellation.less=Constellation not present
+error.modularmagic.requirement.constellation.unknown=Unknown Constellation
 
 error.modularmagic.requirement.invalid=Invalid IO Type
 
@@ -16,7 +19,7 @@ info.modularmagic.lp=LP
 ïnfo.modularmagic.lppertick=LP per Tick
 info.modularmagic.lifeessence=Life Essence
 info.modularmagic.grid.required=Need %f GP
-info.modularmagic.grid.produced=Produce % GP
+info.modularmagic.grid.produced=Produce %f GP
 
 tile.blockwillproviderinput.name=Demon Will Input Hatch
 tile.blockwillprovideroutput.name=Demon Will Output Hatch
@@ -28,3 +31,4 @@ tile.blockgridproviderinput.name=Grid Power Input Hatch
 tile.blockgridprovideroutput.name=Grid Power Output Hatch
 tile.blockstarlightproviderinput.name=Starlight Collector Hatch
 tile.blockstarlightprovideroutput.name=Starlight Distributor Hatch
+tile.blockconstellationprovider.name=Constellation Detector Hatch

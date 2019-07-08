@@ -1,11 +1,11 @@
 package fr.frinn.modularmagic;
 
-import fr.frinn.modularmagic.block.ModularMagicBlocks;
-import fr.frinn.modularmagic.component.*;
-import fr.frinn.modularmagic.event.EventHandlerModularMagic;
-import fr.frinn.modularmagic.item.ModularMagicItems;
-import fr.frinn.modularmagic.network.StarlightMessage;
-import fr.frinn.modularmagic.proxy.CommonProxy;
+import fr.frinn.modularmagic.common.block.ModularMagicBlocks;
+import fr.frinn.modularmagic.common.crafting.component.*;
+import fr.frinn.modularmagic.common.event.EventHandlerModularMagic;
+import fr.frinn.modularmagic.common.item.ModularMagicItems;
+import fr.frinn.modularmagic.common.network.StarlightMessage;
+import fr.frinn.modularmagic.common.proxy.CommonProxy;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 public class ModularMagic {
     public static final String MODID = "modularmagic";
     public static final String NAME = "Modular Magic";
-    public static final String VERSION = "1.3.0";
+    public static final String VERSION = "1.4.0";
 
     public static boolean bloodmagicLoaded = false;
     public static boolean thaumcraftLoaded = false;
@@ -30,7 +30,7 @@ public class ModularMagic {
     public static boolean extraUtils2Loaded = false;
     public static boolean astralLoaded = false;
 
-    @SidedProxy(modId = MODID, clientSide = "fr.frinn.modularmagic.proxy.ClientProxy", serverSide = "fr.frinn.modularmagic.proxy.ServerProxy")
+    @SidedProxy(modId = MODID, clientSide = "fr.frinn.modularmagic.common.proxy.ClientProxy", serverSide = "fr.frinn.modularmagic.common.proxy.ServerProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance(MODID)
@@ -63,6 +63,7 @@ public class ModularMagic {
         astralLoaded = Loader.isModLoaded("astralsorcery");
         if(astralLoaded) {
             ComponentType.Registry.register(new ComponentStarlight());
+            ComponentType.Registry.register(new ComponentConstellation());
         }
         NETWORK.registerMessage(StarlightMessage.StarlightMessageHandler.class, StarlightMessage.class, 0, Side.SERVER);
         NETWORK.registerMessage(StarlightMessage.StarlightMessageHandler.class, StarlightMessage.class, 0, Side.CLIENT);

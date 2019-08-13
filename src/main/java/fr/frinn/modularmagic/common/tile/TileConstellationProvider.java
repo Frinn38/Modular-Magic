@@ -3,6 +3,7 @@ package fr.frinn.modularmagic.common.tile;
 import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentConstellationProvider;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.astralsorcery.common.constellation.distribution.ConstellationSkyHandler;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import net.minecraft.tileentity.TileEntity;
@@ -21,6 +22,6 @@ public class TileConstellationProvider extends TileEntity implements MachineComp
     @Nullable
     @Override
     public MachineComponent provideComponent() {
-        return new MachineComponentConstellationProvider(this, MachineComponent.IOType.INPUT);
+        return new MachineComponentConstellationProvider(this, IOType.INPUT);
     }
 }

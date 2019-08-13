@@ -6,7 +6,6 @@ import fr.frinn.modularmagic.ModularMagic;
 import fr.frinn.modularmagic.common.integration.jei.ingredient.DemonWill;
 import mezz.jei.api.ingredients.IIngredientHelper;
 
-
 import javax.annotation.Nullable;
 
 public class DemonWillHelper<T extends DemonWill> implements IIngredientHelper<T> {

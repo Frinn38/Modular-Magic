@@ -3,8 +3,6 @@ package fr.frinn.modularmagic.common.integration.jei.render;
 import fr.frinn.modularmagic.common.integration.jei.ingredient.Constellation;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.sky.RenderAstralSkybox;
-import hellfirepvp.astralsorcery.client.util.ClientConstellationGenerator;
-import hellfirepvp.astralsorcery.client.util.ClientUtils;
 import hellfirepvp.astralsorcery.client.util.RenderConstellation;
 import hellfirepvp.astralsorcery.client.util.resource.AssetLibrary;
 import hellfirepvp.astralsorcery.client.util.resource.AssetLoader;

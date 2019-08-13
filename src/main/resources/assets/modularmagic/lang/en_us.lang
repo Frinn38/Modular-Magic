@@ -1,8 +1,8 @@
 error.modularmagic.requirement.lifeessence=Error while checking Life Essence requirement
 error.modularmagic.requirement.lifeessence.orb=Missing or Unbound Blood Orb
 error.modularmagic.requirement.lifeessence.lp=Not enough LP
-error.modularmagic.requirement.will=Error while checking Demonic Will requirement
 error.modularmagic.requirement.will.less=Not enough will
+error.modularmagic.requirement.will.more=Too much will
 error.modularmagic.requirement.aspect.less=Not enough aspect
 error.modularmagic.requirement.aspect.out=Can't output aspect
 error.modularmagic.requirement.grid.less=Not enough grid power
@@ -12,8 +12,12 @@ error.modularmagic.requirement.starlight.missingprovider=No Starlight Hatch foun
 error.modularmagic.requirement.constellation.missingprovider=No Constellation Detector Hatch found
 error.modularmagic.requirement.constellation.less=Constellation not present
 error.modularmagic.requirement.constellation.unknown=Unknown Constellation
+error.modularmagic.requirement.aura.invalid=Invalid Aura type in this world
+error.modularmagic.requirement.aura.less=Not enough Aura
+error.modularmagic.requirement.aura.more=Too much Aura
 
 error.modularmagic.requirement.invalid=Invalid IO Type
+error.modularmagic.component.invalid=Invalid Hatch
 
 info.modularmagic.lp=LP
 ïnfo.modularmagic.lppertick=LP per Tick
@@ -32,3 +36,5 @@ tile.blockgridprovideroutput.name=Grid Power Output Hatch
 tile.blockstarlightproviderinput.name=Starlight Collector Hatch
 tile.blockstarlightprovideroutput.name=Starlight Distributor Hatch
 tile.blockconstellationprovider.name=Constellation Detector Hatch
+tile.blockauraproviderinput.name=Aura Input Hatch
+tile.blockauraproviderOutput.name=Aura Output Hatch

@@ -1,52 +1,64 @@
 package fr.frinn.modularmagic.common.crafting.requirement;
 
 import com.google.common.collect.Lists;
+import fr.frinn.modularmagic.common.crafting.requirement.types.ModularMagicRequirements;
+import fr.frinn.modularmagic.common.crafting.requirement.types.RequirementTypeConstellation;
 import fr.frinn.modularmagic.common.integration.jei.component.JEIComponentConstellation;
+import fr.frinn.modularmagic.common.integration.jei.ingredient.Constellation;
 import fr.frinn.modularmagic.common.tile.TileConstellationProvider;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
-import hellfirepvp.modularmachinery.common.crafting.ComponentType;
-import hellfirepvp.modularmachinery.common.crafting.helper.ComponentRequirement;
-import hellfirepvp.modularmachinery.common.crafting.helper.CraftCheck;
-import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
-import hellfirepvp.modularmachinery.common.machine.MachineComponent;
+import hellfirepvp.modularmachinery.common.crafting.helper.*;
+import hellfirepvp.modularmachinery.common.lib.RegistriesMM;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class RequirementConstellation extends ComponentRequirement {
+public class RequirementConstellation extends ComponentRequirement<Constellation, RequirementTypeConstellation> {
 
     public IConstellation constellation;
 
-    public RequirementConstellation(MachineComponent.IOType actionType, IConstellation constellation) {
-        super(ComponentType.Registry.getComponent("constellation"), actionType);
+    public RequirementConstellation(IOType actionType, IConstellation constellation) {
+        super((RequirementTypeConstellation) RegistriesMM.REQUIREMENT_TYPE_REGISTRY.getValue(ModularMagicRequirements.KEY_REQUIREMENT_CONSTELLATION), actionType);
         this.constellation = constellation;
     }
 
     @Override
-    public boolean startCrafting(MachineComponent component, RecipeCraftingContext context, ResultChance chance) {
+    public boolean isValidComponent(ProcessingComponent<?> component, RecipeCraftingContext ctx) {
+        return component.getComponent().getContainerProvider() instanceof TileConstellationProvider;
+    }
+
+    @Override
+    public boolean startCrafting(ProcessingComponent<?> component, RecipeCraftingContext context, ResultChance chance) {
         return canStartCrafting(component, context, Lists.newArrayList()).isSuccess();
     }
 
     @Override
-    public boolean finishCrafting(MachineComponent component, RecipeCraftingContext context, ResultChance chance) {
-        return true;
+    public CraftCheck finishCrafting(ProcessingComponent<?> component, RecipeCraftingContext context, ResultChance chance) {
+        return CraftCheck.success();
     }
 
     @Nonnull
     @Override
-    public CraftCheck canStartCrafting(MachineComponent component, RecipeCraftingContext context, List restrictions) {
-        if(getActionType() == MachineComponent.IOType.OUTPUT)
+    public CraftCheck canStartCrafting(ProcessingComponent<?> component, RecipeCraftingContext context, List<ComponentOutputRestrictor> restrictions) {
+        if(getActionType() == IOType.OUTPUT)
             return CraftCheck.failure("error.modularmagic.requirement.invalid");
 
-        if(component.getContainerProvider() == null || !(component.getContainerProvider() instanceof TileConstellationProvider))
+        if(component.getComponent().getContainerProvider() == null || !(component.getComponent().getContainerProvider() instanceof TileConstellationProvider))
             return CraftCheck.failure("error.modularmagic.requirement.constellation.missingprovider");
 
-        TileConstellationProvider provider = (TileConstellationProvider) component.getContainerProvider();
+        TileConstellationProvider provider = (TileConstellationProvider) component.getComponent().getContainerProvider();
         if(provider.isConstellationInSky(constellation))
             return CraftCheck.success();
         else
             return CraftCheck.failure("error.modularmagic.requirement.constellation.less");
+    }
+
+    @Nonnull
+    @Override
+    public String getMissingComponentErrorMessage(IOType ioType) {
+        return "error.modularmagic.component.invalid";
     }
 
     @Override

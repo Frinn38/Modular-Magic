@@ -6,20 +6,23 @@ import com.rwtema.extrautils2.power.IWorldPowerMultiplier;
 import com.rwtema.extrautils2.power.PowerManager;
 import com.rwtema.extrautils2.tile.TilePower;
 import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentGridProvider;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class TileGridProvider extends TilePower implements IWorldPowerMultiplier, MachineComponentTile {
+public class TileGridProvider extends TilePower implements IWorldPowerMultiplier, MachineComponentTile, ITickable {
 
-    private float power = 0.0F;
+    private float power;
+    private int tick;
 
     @Override
     public float multiplier(@Nullable World world) {
@@ -39,7 +42,18 @@ public class TileGridProvider extends TilePower implements IWorldPowerMultiplier
         return PowerManager.instance.getPowerFreq(this.frequency);
     }
 
-    public void setPower(float power) {this.power = power;}
+    public void setPower(float power) {
+        this.tick = 2;
+        this.power = power;
+    }
+
+    @Override
+    public void update() {
+        if(this.tick > 0)
+            this.tick--;
+        else if(this.power != 0)
+            this.power = 0;
+    }
 
     @Override
     public void onLoad() {
@@ -77,7 +91,7 @@ public class TileGridProvider extends TilePower implements IWorldPowerMultiplier
         @Nullable
         @Override
         public MachineComponent provideComponent() {
-            return new MachineComponentGridProvider(this, MachineComponent.IOType.INPUT);
+            return new MachineComponentGridProvider(this, IOType.INPUT);
         }
     }
 
@@ -90,7 +104,7 @@ public class TileGridProvider extends TilePower implements IWorldPowerMultiplier
         @Nullable
         @Override
         public MachineComponent provideComponent() {
-            return new MachineComponentGridProvider(this, MachineComponent.IOType.OUTPUT);
+            return new MachineComponentGridProvider(this, IOType.OUTPUT);
         }
     }
 }

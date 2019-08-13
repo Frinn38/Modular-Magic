@@ -1,61 +1,83 @@
 package fr.frinn.modularmagic.common.crafting.requirement;
 
 import com.google.common.collect.Lists;
+import fr.frinn.modularmagic.common.crafting.requirement.types.ModularMagicRequirements;
+import fr.frinn.modularmagic.common.crafting.requirement.types.RequirementTypeGrid;
 import fr.frinn.modularmagic.common.integration.jei.component.JEIComponentGrid;
+import fr.frinn.modularmagic.common.integration.jei.ingredient.Grid;
 import fr.frinn.modularmagic.common.tile.TileGridProvider;
-import hellfirepvp.modularmachinery.common.crafting.ComponentType;
-import hellfirepvp.modularmachinery.common.crafting.helper.ComponentRequirement;
-import hellfirepvp.modularmachinery.common.crafting.helper.CraftCheck;
-import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
-import hellfirepvp.modularmachinery.common.machine.MachineComponent;
+import hellfirepvp.modularmachinery.common.crafting.helper.*;
+import hellfirepvp.modularmachinery.common.lib.RegistriesMM;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class RequirementGrid extends ComponentRequirement {
+public class RequirementGrid extends ComponentRequirement.PerTick<Grid, RequirementTypeGrid> {
 
     public float power;
 
-    public RequirementGrid(MachineComponent.IOType actionType, float power) {
-        super(ComponentType.Registry.getComponent("grid"), actionType);
+    public RequirementGrid(IOType actionType, float power) {
+        super((RequirementTypeGrid) RegistriesMM.REQUIREMENT_TYPE_REGISTRY.getValue(ModularMagicRequirements.KEY_REQUIREMENT_GRID), actionType);
         this.power = power;
     }
 
     @Override
-    public boolean startCrafting(MachineComponent component, RecipeCraftingContext context, ResultChance chance) {
-        TileGridProvider provider = (TileGridProvider) component.getContainerProvider();
-        if(provider == null || !canStartCrafting(component, context, Lists.newArrayList()).isSuccess())
-            return false;
-
-        switch (getActionType()) {
-            case INPUT:
-                provider.setPower(-power);
-            case OUTPUT:
-                provider.setPower(power);
-        }
-        return true;
+    public boolean isValidComponent(ProcessingComponent<?> component, RecipeCraftingContext ctx) {
+        return component.getComponent().getContainerProvider() instanceof TileGridProvider;
     }
 
     @Override
-    public boolean finishCrafting(MachineComponent component, RecipeCraftingContext context, ResultChance chance) {
-        TileGridProvider provider = (TileGridProvider) component.getContainerProvider();
-        if(provider != null)
-            provider.setPower(0.0F);
-        return true;
+    public void startIOTick(RecipeCraftingContext context, float durationMultiplier) {
+
     }
 
     @Nonnull
     @Override
-    public CraftCheck canStartCrafting(MachineComponent component, RecipeCraftingContext context, List restrictions) {
-        TileGridProvider provider = (TileGridProvider) component.getContainerProvider();
-        if(provider == null)
-            return CraftCheck.failure("error.modularmagic.requirement.grid.missingprovider");
-
-        if(getActionType() == MachineComponent.IOType.INPUT && provider.getFreq().getPowerCreated() - provider.getFreq().getPowerDrain() < this.power)
-            return CraftCheck.failure("error.modularmagic.requirement.grid.less");
-
+    public CraftCheck resetIOTick(RecipeCraftingContext context) {
         return CraftCheck.success();
+    }
+
+    @Nonnull
+    @Override
+    public CraftCheck doIOTick(ProcessingComponent<?> component, RecipeCraftingContext context) {
+        TileGridProvider provider = (TileGridProvider) component.getComponent().getContainerProvider();
+        switch (getActionType()) {
+            case OUTPUT:
+                provider.setPower(-this.power);
+
+            case INPUT:
+                provider.setPower(this.power);
+        }
+        return CraftCheck.success();
+    }
+
+    @Override
+    public boolean startCrafting(ProcessingComponent<?> component, RecipeCraftingContext context, ResultChance chance) {
+        return canStartCrafting(component, context, Lists.newArrayList()).isSuccess();
+    }
+
+    @Override
+    public CraftCheck finishCrafting(ProcessingComponent<?> component, RecipeCraftingContext context, ResultChance chance) {
+        return CraftCheck.success();
+    }
+
+    @Nonnull
+    @Override
+    public CraftCheck canStartCrafting(ProcessingComponent<?> component, RecipeCraftingContext context, List<ComponentOutputRestrictor> restrictions) {
+        TileGridProvider provider = (TileGridProvider) component.getComponent().getContainerProvider();
+
+        if(getActionType() == IOType.INPUT && provider.getFreq().getPowerCreated() - provider.getFreq().getPowerDrain() < this.power)
+            return CraftCheck.failure("error.modularmagic.requirement.grid.less");
+        else
+            return CraftCheck.success();
+    }
+
+    @Nonnull
+    @Override
+    public String getMissingComponentErrorMessage(IOType ioType) {
+        return "error.modularmagic.component.invalid";
     }
 
     @Override

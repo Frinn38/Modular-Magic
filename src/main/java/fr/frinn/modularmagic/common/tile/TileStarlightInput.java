@@ -11,6 +11,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.registry.Transmis
 import hellfirepvp.astralsorcery.common.tile.base.TileReceiverBase;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.SkyCollectionHelper;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,7 +28,7 @@ public class TileStarlightInput extends TileReceiverBase implements MachineCompo
     @Nullable
     @Override
     public MachineComponent provideComponent() {
-        return new MachineComponentStarlightProviderInput(this, MachineComponent.IOType.INPUT);
+        return new MachineComponentStarlightProviderInput(this, IOType.INPUT);
     }
 
     public int getStarlightStored() {

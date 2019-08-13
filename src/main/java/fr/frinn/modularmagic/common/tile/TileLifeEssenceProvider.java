@@ -7,12 +7,14 @@ import WayofTime.bloodmagic.orb.BloodOrb;
 import WayofTime.bloodmagic.orb.IBloodOrb;
 import WayofTime.bloodmagic.util.helper.NetworkHelper;
 import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentLifeEssenceProvider;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import hellfirepvp.modularmachinery.common.tiles.base.TileInventory;
 import hellfirepvp.modularmachinery.common.util.IOInventory;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TileLifeEssenceProvider extends TileInventory implements MachineComponentTile {
@@ -46,7 +48,15 @@ public class TileLifeEssenceProvider extends TileInventory implements MachineCom
 
     @Override
     public IOInventory buildInventory(TileInventory tile, int size) {
-        return new IOInventory(tile, new int[1], new int[1]);
+        return new IOInventory(tile, new int[1], new int[1]) {
+            @Override
+            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+                if(stack.getItem() instanceof IBloodOrb)
+                    return true;
+                else
+                    return false;
+            }
+        };
     }
 
     @Nullable
@@ -60,7 +70,7 @@ public class TileLifeEssenceProvider extends TileInventory implements MachineCom
         @Nullable
         @Override
         public MachineComponent provideComponent() {
-            return new MachineComponentLifeEssenceProvider(this, MachineComponent.IOType.INPUT);
+            return new MachineComponentLifeEssenceProvider(this, IOType.INPUT);
         }
     }
 
@@ -69,7 +79,7 @@ public class TileLifeEssenceProvider extends TileInventory implements MachineCom
         @Nullable
         @Override
         public MachineComponent provideComponent() {
-            return new MachineComponentLifeEssenceProvider(this, MachineComponent.IOType.OUTPUT);
+            return new MachineComponentLifeEssenceProvider(this, IOType.OUTPUT);
         }
     }
 }

@@ -1,7 +1,10 @@
 package fr.frinn.modularmagic.common.tile.machinecomponent;
 
+import fr.frinn.modularmagic.common.crafting.component.ModularMagicComponents;
 import fr.frinn.modularmagic.common.tile.TileWillProvider;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;
+import hellfirepvp.modularmachinery.common.lib.RegistriesMM;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 
 public class MachineComponentWillProvider extends MachineComponent<TileWillProvider> {
@@ -15,7 +18,7 @@ public class MachineComponentWillProvider extends MachineComponent<TileWillProvi
 
     @Override
     public ComponentType getComponentType() {
-        return ComponentType.Registry.getComponent("will");
+        return RegistriesMM.COMPONENT_TYPE_REGISTRY.getValue(ModularMagicComponents.KEY_COMPONENT_WILL);
     }
 
     @Override

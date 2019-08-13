@@ -38,5 +38,8 @@ public class JeiPlugin implements IModPlugin {
             registry.register(Starlight.class, Lists.newArrayList(), new StarlightHelper<Starlight>(), new StarlightRenderer());
             registry.register(Constellation.class, Lists.newArrayList(), new ConstellationHelper<Constellation>(), new ConstellationRenderer());
         }
+        if(ModularMagic.naturesauraLoaded) {
+            registry.register(Aura.class, Lists.newArrayList(), new AuraHelper<Aura>(), new AuraRenderer());
+        }
     }
 }

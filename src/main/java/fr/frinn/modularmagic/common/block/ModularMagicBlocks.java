@@ -5,18 +5,13 @@ import fr.frinn.modularmagic.common.item.ModularMagicItems;
 import hellfirepvp.modularmachinery.common.block.BlockDynamicColor;
 import hellfirepvp.modularmachinery.common.item.ItemBlockMachineComponent;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.item.ItemBlock;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
 
 public class ModularMagicBlocks {
 
-    private static ArrayList<Block> BLOCKS = new ArrayList<Block>();
+    public static ArrayList<Block> BLOCKS = new ArrayList<Block>();
     public static  ArrayList<BlockDynamicColor> COLOR_BLOCKS = new ArrayList<>();
 
     public static void initBlocks() {
@@ -57,6 +52,14 @@ public class ModularMagicBlocks {
             registerBlock("blockstarlightprovideroutput", blockStarlightProviderOutput, new ItemBlockMachineComponent(blockStarlightProviderOutput));
             registerBlock("blockconstellationprovider", blockConstellationProvider, new ItemBlockMachineComponent(blockConstellationProvider));
         }
+
+        if(ModularMagic.naturesauraLoaded) {
+            BlockAuraProviderInput blockAuraProviderInput = new BlockAuraProviderInput();
+            BlockAuraProviderOutput blockAuraProviderOutput = new BlockAuraProviderOutput();
+
+            registerBlock("blockauraproviderinput", blockAuraProviderInput, new ItemBlockMachineComponent(blockAuraProviderInput));
+            registerBlock("blockauraproviderOutput", blockAuraProviderOutput, new ItemBlockMachineComponent(blockAuraProviderOutput));
+        }
     }
 
     private static void registerBlock(String id, Block block, ItemBlock itemBlock) {
@@ -64,21 +67,5 @@ public class ModularMagicBlocks {
         block.setUnlocalizedName(id);
         BLOCKS.add(block);
         ModularMagicItems.registerItem(id, itemBlock);
-    }
-
-    @SubscribeEvent
-    public static void onBlockRegister(RegistryEvent.Register<Block> event) {
-        for(Block block : BLOCKS)
-            event.getRegistry().register(block);
-    }
-
-    @SubscribeEvent
-    public static void registerBlockModels(ModelRegistryEvent event) {
-        BlockColors blockColors = Minecraft.getMinecraft().getBlockColors();
-        for(Block block : BLOCKS) {
-            if(block instanceof BlockDynamicColor)
-                COLOR_BLOCKS.add((BlockDynamicColor)block);
-        }
-
     }
 }

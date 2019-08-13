@@ -1,61 +1,82 @@
 package fr.frinn.modularmagic.common.crafting.requirement;
 
 import com.google.common.collect.Lists;
+import fr.frinn.modularmagic.common.crafting.requirement.types.ModularMagicRequirements;
+import fr.frinn.modularmagic.common.crafting.requirement.types.RequirementTypeStarlight;
 import fr.frinn.modularmagic.common.integration.jei.component.JEIComponentStarlight;
+import fr.frinn.modularmagic.common.integration.jei.ingredient.Starlight;
 import fr.frinn.modularmagic.common.tile.TileStarlightInput;
 import fr.frinn.modularmagic.common.tile.TileStarlightOutput;
-import hellfirepvp.modularmachinery.common.crafting.ComponentType;
 import hellfirepvp.modularmachinery.common.crafting.helper.ComponentRequirement;
 import hellfirepvp.modularmachinery.common.crafting.helper.CraftCheck;
+import hellfirepvp.modularmachinery.common.crafting.helper.ProcessingComponent;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
-import hellfirepvp.modularmachinery.common.machine.MachineComponent;
+import hellfirepvp.modularmachinery.common.lib.RegistriesMM;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class RequirementStarlight extends ComponentRequirement {
+public class RequirementStarlight extends ComponentRequirement.PerTick<Starlight, RequirementTypeStarlight> {
 
     public float starlightAmount;
 
-    public RequirementStarlight(MachineComponent.IOType actionType, float starlightAmount) {
-        super(ComponentType.Registry.getComponent("starlight"), actionType);
+    public RequirementStarlight(IOType actionType, float starlightAmount) {
+        super((RequirementTypeStarlight) RegistriesMM.REQUIREMENT_TYPE_REGISTRY.getValue(ModularMagicRequirements.KEY_REQUIREMENT_STARLIGHT), actionType);
         this.starlightAmount = starlightAmount;
     }
 
     @Override
-    public boolean startCrafting(MachineComponent component, RecipeCraftingContext context, ResultChance chance) {
-        if(!canStartCrafting(component, context, Lists.newArrayList()).isSuccess())
-            return false;
-
-        return true;
+    public boolean isValidComponent(ProcessingComponent<?> component, RecipeCraftingContext ctx) {
+        return component.getComponent().getContainerProvider() instanceof TileStarlightInput ||
+                component.getComponent().getContainerProvider() instanceof TileStarlightOutput;
     }
 
     @Override
-    public boolean finishCrafting(MachineComponent component, RecipeCraftingContext context, ResultChance chance) {
-        if(getActionType() == MachineComponent.IOType.OUTPUT) {
-            ((TileStarlightOutput) component.getContainerProvider()).setStarlightProduced(0.0F);
-        }
-        return true;
+    public void startIOTick(RecipeCraftingContext context, float durationMultiplier) {
+
     }
 
     @Nonnull
     @Override
-    public CraftCheck canStartCrafting(MachineComponent component, RecipeCraftingContext context, List restrictions) {
-        if(component.getContainerProvider() instanceof TileStarlightInput || component.getContainerProvider() instanceof TileStarlightOutput) {
-            if(getActionType() == MachineComponent.IOType.INPUT) {
-                TileStarlightInput provider = (TileStarlightInput) component.getContainerProvider();
+    public CraftCheck resetIOTick(RecipeCraftingContext context) {
+        return CraftCheck.success();
+    }
+
+    @Nonnull
+    @Override
+    public CraftCheck doIOTick(ProcessingComponent<?> component, RecipeCraftingContext context) {
+        if (getActionType() == IOType.OUTPUT)
+            ((TileStarlightOutput) component.getComponent().getContainerProvider()).setStarlightProduced(this.starlightAmount / 4000);
+
+        return CraftCheck.success();
+    }
+
+    @Override
+    public boolean startCrafting(ProcessingComponent component, RecipeCraftingContext context, ResultChance chance) {
+        return canStartCrafting(component, context, Lists.newArrayList()).isSuccess();
+    }
+
+    @Override
+    public CraftCheck finishCrafting(ProcessingComponent component, RecipeCraftingContext context, ResultChance chance) {
+        return CraftCheck.success();
+    }
+
+    @Nonnull
+    @Override
+    public CraftCheck canStartCrafting(ProcessingComponent component, RecipeCraftingContext context, List restrictions) {
+            if(getActionType() == IOType.INPUT) {
+                TileStarlightInput provider = (TileStarlightInput) component.getComponent().getContainerProvider();
                 return provider.getStarlightStored() >= this.starlightAmount ? CraftCheck.success() : CraftCheck.failure("error.modularmagic.requirement.starlight.less");
             }
-            else if(getActionType() == MachineComponent.IOType.OUTPUT) {
-                TileStarlightOutput provider = (TileStarlightOutput) component.getContainerProvider();
-                provider.setStarlightProduced(this.starlightAmount / 4000.0F);
-                provider.controller = context.getMachineController();
-                return CraftCheck.success();
-            }
-            return CraftCheck.failure("error.modularmagic.requirement.invalid");
-        }
-        return CraftCheck.failure("error.modularmagic.requirement.starlight.missingprovider");
+            return CraftCheck.success();
+    }
+
+    @Nonnull
+    @Override
+    public String getMissingComponentErrorMessage(IOType ioType) {
+        return "error.modularmagic.component.invalid";
     }
 
     @Override

@@ -12,6 +12,7 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.base.SimpleIndepe
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.SimpleTransmissionSourceNode;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.SourceClassRegistry;
 import hellfirepvp.astralsorcery.common.tile.base.TileSourceBase;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.TileMachineController;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
@@ -29,7 +30,7 @@ import java.util.Map;
 public class TileStarlightOutput extends TileSourceBase implements MachineComponentTile {
 
     private float starlightProduced = 0.0F;
-    public TileMachineController controller;
+    public int tick;
 
     public IWeakConstellation constellation = ConstellationRegistry.getWeakConstellations().get(0);
 
@@ -38,21 +39,23 @@ public class TileStarlightOutput extends TileSourceBase implements MachineCompon
     }
 
     public void setStarlightProduced(float starlightProduced) {
-        this.starlightProduced = starlightProduced >= 0 ? starlightProduced : 0;
+        this.tick = 2;
+        this.starlightProduced = starlightProduced;
     }
 
     @Nullable
     @Override
     public MachineComponent provideComponent() {
-        return new MachineComponentStarlightProviderOutput(this, MachineComponent.IOType.OUTPUT);
+        return new MachineComponentStarlightProviderOutput(this, IOType.OUTPUT);
     }
 
     @Override
     public void update() {
-        if(!world.isRemote && this.starlightProduced > 0 && world.getTotalWorldTime() % 20 == 0) {
-            if(controller == null || controller.getFoundMachine() == null)
-                this.starlightProduced = 0.0F;
-        }
+        if(tick > 0)
+            tick--;
+        else if(starlightProduced > 0)
+            starlightProduced = 0;
+
         super.update();
     }
 

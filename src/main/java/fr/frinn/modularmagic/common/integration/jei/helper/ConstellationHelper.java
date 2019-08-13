@@ -1,6 +1,5 @@
 package fr.frinn.modularmagic.common.integration.jei.helper;
 
-import fr.frinn.modularmagic.ModularMagic;
 import fr.frinn.modularmagic.common.integration.jei.ingredient.Constellation;
 import mezz.jei.api.ingredients.IIngredientHelper;
 

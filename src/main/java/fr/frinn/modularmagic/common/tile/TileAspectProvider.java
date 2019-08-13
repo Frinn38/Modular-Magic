@@ -1,6 +1,7 @@
 package fr.frinn.modularmagic.common.tile;
 
 import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentAspectProvider;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import net.minecraft.tileentity.TileEntity;
@@ -73,7 +74,7 @@ public class TileAspectProvider extends TileJarFillable implements MachineCompon
         @Nullable
         @Override
         public MachineComponent provideComponent() {
-            return new MachineComponentAspectProvider(this, MachineComponent.IOType.INPUT);
+            return new MachineComponentAspectProvider(this, IOType.INPUT);
         }
     }
 
@@ -82,7 +83,7 @@ public class TileAspectProvider extends TileJarFillable implements MachineCompon
         @Nullable
         @Override
         public MachineComponent provideComponent() {
-            return new MachineComponentAspectProvider(this, MachineComponent.IOType.OUTPUT);
+            return new MachineComponentAspectProvider(this, IOType.OUTPUT);
         }
     }
 }

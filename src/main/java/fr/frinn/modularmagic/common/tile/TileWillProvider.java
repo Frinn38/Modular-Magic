@@ -3,6 +3,7 @@ package fr.frinn.modularmagic.common.tile;
 import WayofTime.bloodmagic.demonAura.WorldDemonWillHandler;
 import WayofTime.bloodmagic.soul.EnumDemonWillType;
 import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentWillProvider;
+import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import hellfirepvp.modularmachinery.common.tiles.base.TileColorableMachineComponent;
@@ -34,7 +35,7 @@ public class TileWillProvider extends TileColorableMachineComponent implements M
         @Nullable
         @Override
         public MachineComponent provideComponent() {
-            return new MachineComponentWillProvider(this, MachineComponent.IOType.INPUT);
+            return new MachineComponentWillProvider(this, IOType.INPUT);
         }
     }
 
@@ -43,7 +44,7 @@ public class TileWillProvider extends TileColorableMachineComponent implements M
         @Nullable
         @Override
         public MachineComponent provideComponent() {
-            return new MachineComponentWillProvider(this, MachineComponent.IOType.OUTPUT);
+            return new MachineComponentWillProvider(this, IOType.OUTPUT);
         }
     }
 }

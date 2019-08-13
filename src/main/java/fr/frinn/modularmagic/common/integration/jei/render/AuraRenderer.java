@@ -1,6 +1,5 @@
 package fr.frinn.modularmagic.common.integration.jei.render;
 
-import com.sun.istack.internal.Nullable;
 import de.ellpeck.naturesaura.api.aura.type.IAuraType;
 import de.ellpeck.naturesaura.items.ModItems;
 import fr.frinn.modularmagic.common.integration.jei.ingredient.Aura;
@@ -12,6 +11,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 

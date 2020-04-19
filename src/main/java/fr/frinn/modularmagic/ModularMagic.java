@@ -27,6 +27,7 @@ public class ModularMagic {
     public static boolean extraUtils2Loaded = false;
     public static boolean astralLoaded = false;
     public static boolean naturesauraLoaded = false;
+	public static boolean botaniaLoaded = false;
 
     @SidedProxy(modId = MODID, clientSide = "fr.frinn.modularmagic.common.proxy.ClientProxy", serverSide = "fr.frinn.modularmagic.common.proxy.ServerProxy")
     public static CommonProxy proxy;
@@ -49,6 +50,7 @@ public class ModularMagic {
         extraUtils2Loaded = Loader.isModLoaded("extrautils2");
         astralLoaded = Loader.isModLoaded("astralsorcery");
         naturesauraLoaded = Loader.isModLoaded("naturesaura");
+        botaniaLoaded = Loader.isModLoaded("botania");
 
         NETWORK.registerMessage(StarlightMessage.StarlightMessageHandler.class, StarlightMessage.class, 0, Side.SERVER);
         NETWORK.registerMessage(StarlightMessage.StarlightMessageHandler.class, StarlightMessage.class, 0, Side.CLIENT);

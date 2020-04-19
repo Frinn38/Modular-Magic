@@ -200,4 +200,24 @@ public class MagicPrimer {
 
         return primer;
     }
+
+    @ZenMethod
+    public static RecipePrimer addManaInput(RecipePrimer primer, int amount) {
+        if(amount > 0)
+            primer.appendComponent(new RequirementMana(IOType.INPUT, amount));
+        else
+            CraftTweakerAPI.logError("Invalid Mana amount : " + amount + " (need to be positive and not null)");
+
+        return primer;
+    }
+
+    @ZenMethod
+    public static RecipePrimer addManaOutput(RecipePrimer primer, int amount) {
+        if(amount > 0)
+            primer.appendComponent(new RequirementMana(IOType.OUTPUT, amount));
+        else
+            CraftTweakerAPI.logError("Invalid Mana amount : " + amount + " (need to be positive and not null)");
+
+        return primer;
+    }
 }

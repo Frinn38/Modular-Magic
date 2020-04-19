@@ -17,6 +17,7 @@ public class ModularMagicComponents {
     public static final ResourceLocation KEY_COMPONENT_LIFE_ESSENCE = new ResourceLocation(ModularMagic.MODID, "lifeessence");
     public static final ResourceLocation KEY_COMPONENT_STARLIGHT = new ResourceLocation(ModularMagic.MODID, "starlight");
     public static final ResourceLocation KEY_COMPONENT_WILL = new ResourceLocation(ModularMagic.MODID, "will");
+    public static final ResourceLocation KEY_COMPONENT_MANA = new ResourceLocation(ModularMagic.MODID, "mana");
 
 
     public static void initComponents() {
@@ -36,6 +37,10 @@ public class ModularMagicComponents {
         }
         if(ModularMagic.thaumcraftLoaded) {
             registerComponent(new ComponentAspect(), KEY_COMPONENT_ASPECT);
+        }
+
+        if(ModularMagic.botaniaLoaded) {
+        	registerComponent(new ComponentMana(), KEY_COMPONENT_MANA);
         }
     }
 

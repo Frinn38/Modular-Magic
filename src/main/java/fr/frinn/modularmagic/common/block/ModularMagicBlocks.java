@@ -60,6 +60,14 @@ public class ModularMagicBlocks {
             registerBlock("blockauraproviderinput", blockAuraProviderInput, new ItemBlockMachineComponent(blockAuraProviderInput));
             registerBlock("blockauraproviderOutput", blockAuraProviderOutput, new ItemBlockMachineComponent(blockAuraProviderOutput));
         }
+
+        if(ModularMagic.botaniaLoaded) {
+            BlockManaProviderInput blockManaProviderInput = new BlockManaProviderInput();
+            BlockManaProviderOutput blockManaProviderOutput = new BlockManaProviderOutput();
+
+            registerBlock("blockmanaproviderinput", blockManaProviderInput, new ItemBlockMachineComponent(blockManaProviderInput));
+            registerBlock("blockmanaprovideroutput", blockManaProviderOutput, new ItemBlockMachineComponent(blockManaProviderOutput));
+        }
     }
 
     private static void registerBlock(String id, Block block, ItemBlock itemBlock) {

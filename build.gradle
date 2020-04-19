@@ -71,6 +71,7 @@ dependencies {
     deobfCompile "extra-utilities:extrautils2:1.12:1.9.9"
     deobfCompile "de.ellpeck.naturesaura:NaturesAura:r14-209"
     deobfCompile 'CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.19.548'
+	deobfCompile "vazkii.botania:Botania:r1.10-355.4"
 }
 
 processResources {

@@ -42,5 +42,8 @@ public class JeiPlugin implements IModPlugin {
         if(ModularMagic.naturesauraLoaded) {
             registry.register(Aura.class, Lists.newArrayList(), new AuraHelper<>(), new AuraRenderer());
         }
+        if(ModularMagic.botaniaLoaded) {
+            registry.register(Mana.class, Lists.newArrayList(), new ManaHelper<Mana>(), new ManaRenderer());
+        }
     }
 }

@@ -18,6 +18,7 @@ public class ModularMagicRequirements {
     public static final ResourceLocation KEY_REQUIREMENT_RAINBOW = new ResourceLocation(ModularMagic.MODID, "rainbow");
     public static final ResourceLocation KEY_REQUIREMENT_STARLIGHT = new ResourceLocation(ModularMagic.MODID, "starlight");
     public static final ResourceLocation KEY_REQUIREMENT_WILL = new ResourceLocation(ModularMagic.MODID, "will");
+    public static final ResourceLocation KEY_REQUIREMENT_MANA = new ResourceLocation(ModularMagic.MODID, "mana");
 
     public static void initRequirements() {
         if(ModularMagic.astralLoaded) {
@@ -37,6 +38,9 @@ public class ModularMagicRequirements {
         }
         if(ModularMagic.thaumcraftLoaded) {
             registerRequirement(new RequirementTypeAspect(), KEY_REQUIREMENT_ASPECT);
+        }
+        if(ModularMagic.botaniaLoaded) {
+            registerRequirement(new RequirementTypeMana(), KEY_REQUIREMENT_MANA);
         }
     }
 

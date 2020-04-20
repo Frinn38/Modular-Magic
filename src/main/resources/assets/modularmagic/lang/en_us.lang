@@ -16,7 +16,7 @@ error.modularmagic.requirement.constellation.unknown=Unknown Constellation
 error.modularmagic.requirement.aura.invalid=Invalid Aura type in this world
 error.modularmagic.requirement.aura.less=Not enough Aura
 error.modularmagic.requirement.aura.more=Too much Aura
-
+error.modularmagic.requirement.mana.less=Not enough Mana
 error.modularmagic.requirement.invalid=Invalid IO Type
 error.modularmagic.component.invalid=Invalid Hatch
 
@@ -41,3 +41,5 @@ tile.blockconstellationprovider.name=Constellation Detector Hatch
 tile.blockauraproviderinput.name=Aura Input Hatch
 tile.blockauraprovideroutput.name=Aura Output Hatch
 tile.blockrainbowprovider.name=Rainbow Input Hatch
+tile.blockmanaproviderinput.name=Mana Input Hatch
+tile.blockmanaprovideroutput.name=Mana Output Hatch

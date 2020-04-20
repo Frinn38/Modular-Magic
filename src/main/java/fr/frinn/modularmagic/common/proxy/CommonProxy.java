@@ -43,6 +43,10 @@ public class CommonProxy {
             GameRegistry.registerTileEntity(TileAuraProvider.Input.class, new ResourceLocation(ModularMagic.MODID, "tileauraproviderinput"));
             GameRegistry.registerTileEntity(TileAuraProvider.Output.class, new ResourceLocation(ModularMagic.MODID, "tileauraprovideroutput"));
         }
+        if(ModularMagic.botaniaLoaded) {
+            GameRegistry.registerTileEntity(TileManaProvider.Input.class, new ResourceLocation(ModularMagic.MODID, "tilemanainput"));
+            GameRegistry.registerTileEntity(TileManaProvider.Output.class, new ResourceLocation(ModularMagic.MODID, "tilemanaoutput"));
+        }
         NetworkRegistry.INSTANCE.registerGuiHandler(ModularMagic.INSTANCE, new GuiHandler());
     }
 

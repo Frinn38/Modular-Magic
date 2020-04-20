@@ -4,11 +4,13 @@ import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentAspect
 import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
+import hellfirepvp.modularmachinery.common.tiles.base.TileColorableMachineComponent;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.IEssentiaTransport;
+import thaumcraft.api.blocks.ILabelable;
 import thaumcraft.common.tiles.essentia.TileJarFillable;
 
 import javax.annotation.Nullable;
@@ -60,7 +62,6 @@ public class TileAspectProvider extends TileJarFillable implements MachineCompon
                 this.addToContainer(ta, ic.takeEssentia(ta, 1, face.getOpposite()));
             }
         }
-
     }
 
     @Nullable

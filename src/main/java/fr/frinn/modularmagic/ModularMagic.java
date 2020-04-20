@@ -1,7 +1,7 @@
 package fr.frinn.modularmagic;
 
-import fr.frinn.modularmagic.common.event.EventHandlerModularMagic;
 import fr.frinn.modularmagic.common.event.RegistrationEvent;
+import fr.frinn.modularmagic.common.event.StarlightEventHandler;
 import fr.frinn.modularmagic.common.network.StarlightMessage;
 import fr.frinn.modularmagic.common.proxy.CommonProxy;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 public class ModularMagic {
     public static final String MODID = "modularmagic";
     public static final String NAME = "Modular Magic";
-    public static final String VERSION = "1.5.0";
+    public static final String VERSION = "1.6.0";
 
     public static boolean bloodmagicLoaded = false;
     public static boolean thaumcraftLoaded = false;
@@ -38,7 +38,6 @@ public class ModularMagic {
     public static final SimpleNetworkWrapper NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 
     public ModularMagic() {
-        MinecraftForge.EVENT_BUS.register(EventHandlerModularMagic.class);
         MinecraftForge.EVENT_BUS.register(RegistrationEvent.class);
     }
 
@@ -52,8 +51,12 @@ public class ModularMagic {
         naturesauraLoaded = Loader.isModLoaded("naturesaura");
         botaniaLoaded = Loader.isModLoaded("botania");
 
-        NETWORK.registerMessage(StarlightMessage.StarlightMessageHandler.class, StarlightMessage.class, 0, Side.SERVER);
-        NETWORK.registerMessage(StarlightMessage.StarlightMessageHandler.class, StarlightMessage.class, 0, Side.CLIENT);
+        if(astralLoaded) {
+            MinecraftForge.EVENT_BUS.register(StarlightEventHandler.class);
+            NETWORK.registerMessage(StarlightMessage.StarlightMessageHandler.class, StarlightMessage.class, 0, Side.SERVER);
+            NETWORK.registerMessage(StarlightMessage.StarlightMessageHandler.class, StarlightMessage.class, 0, Side.CLIENT);
+        }
+
         proxy.preInit();
     }
 

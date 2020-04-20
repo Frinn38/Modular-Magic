@@ -15,6 +15,7 @@ public class ModularMagicComponents {
     public static final ResourceLocation KEY_COMPONENT_CONSTELLATION = new ResourceLocation(ModularMagic.MODID, "constellation");
     public static final ResourceLocation KEY_COMPONENT_GRID = new ResourceLocation(ModularMagic.MODID, "grid");
     public static final ResourceLocation KEY_COMPONENT_LIFE_ESSENCE = new ResourceLocation(ModularMagic.MODID, "lifeessence");
+    public static final ResourceLocation KEY_COMPONENT_RAINBOW = new ResourceLocation(ModularMagic.MODID, "rainbow");
     public static final ResourceLocation KEY_COMPONENT_STARLIGHT = new ResourceLocation(ModularMagic.MODID, "starlight");
     public static final ResourceLocation KEY_COMPONENT_WILL = new ResourceLocation(ModularMagic.MODID, "will");
     public static final ResourceLocation KEY_COMPONENT_MANA = new ResourceLocation(ModularMagic.MODID, "mana");
@@ -31,6 +32,7 @@ public class ModularMagicComponents {
         }
         if(ModularMagic.extraUtils2Loaded) {
             registerComponent(new ComponentGrid(), KEY_COMPONENT_GRID);
+            registerComponent(new ComponentRainbow(), KEY_COMPONENT_RAINBOW);
         }
         if(ModularMagic.naturesauraLoaded) {
             registerComponent(new ComponentAura(), KEY_COMPONENT_AURA);

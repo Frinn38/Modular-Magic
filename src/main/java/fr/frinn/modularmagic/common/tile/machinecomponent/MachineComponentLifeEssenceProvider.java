@@ -23,6 +23,6 @@ public class MachineComponentLifeEssenceProvider extends MachineComponent<TileLi
 
     @Override
     public TileLifeEssenceProvider getContainerProvider() {
-        return lifeEssenceProvider;
+        return this.lifeEssenceProvider;
     }
 }

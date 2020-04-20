@@ -27,7 +27,10 @@ public class DemonWillRenderer implements IIngredientRenderer<DemonWill> {
         GlStateManager.enableDepth();
         RenderHelper.enableGUIStandardItemLighting();
 
-        if(willCrystal == null || willType == null || willType != ingredient.getWillType()) {
+        if(ingredient == null)
+            return;
+
+        if((willCrystal == null || willType == null || willType != ingredient.getWillType()) && ingredient.getWillType() != null) {
             willType = ingredient.getWillType();
             ResourceLocation texture;
             if(willType != EnumDemonWillType.DEFAULT)

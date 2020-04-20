@@ -25,21 +25,22 @@ public class JeiPlugin implements IModPlugin {
     @Override
     public void registerIngredients(IModIngredientRegistration registry) {
         if(ModularMagic.bloodmagicLoaded) {
-            registry.register(DemonWill.class, Lists.newArrayList(), new DemonWillHelper<DemonWill>(), new DemonWillRenderer());
-            registry.register(LifeEssence.class, Lists.newArrayList(), new LifeEssenceHelper<LifeEssence>(), new LifeEssenceRenderer());
+            registry.register(DemonWill.class, Lists.newArrayList(), new DemonWillHelper<>(), new DemonWillRenderer());
+            registry.register(LifeEssence.class, Lists.newArrayList(), new LifeEssenceHelper<>(), new LifeEssenceRenderer());
         }
         if(ModularMagic.thaumcraftLoaded && !ModularMagic.thaumicJEILoaded) {
-            registry.register(AspectList.class, Lists.newArrayList(), new AspectHelper<AspectList>(), new AspectRenderer());
+            registry.register(AspectList.class, Lists.newArrayList(), new AspectHelper<>(), new AspectRenderer());
         }
         if(ModularMagic.extraUtils2Loaded) {
-            registry.register(Grid.class, Lists.newArrayList(), new GridHelper<Grid>(), new GridRenderer());
+            registry.register(Grid.class, Lists.newArrayList(), new GridHelper<>(), new GridRenderer());
+            registry.register(Rainbow.class, Lists.newArrayList(), new RainbowHelper<>(), new RainbowRenderer());
         }
         if(ModularMagic.astralLoaded) {
-            registry.register(Starlight.class, Lists.newArrayList(), new StarlightHelper<Starlight>(), new StarlightRenderer());
-            registry.register(Constellation.class, Lists.newArrayList(), new ConstellationHelper<Constellation>(), new ConstellationRenderer());
+            registry.register(Starlight.class, Lists.newArrayList(), new StarlightHelper<>(), new StarlightRenderer());
+            registry.register(Constellation.class, Lists.newArrayList(), new ConstellationHelper<>(), new ConstellationRenderer());
         }
         if(ModularMagic.naturesauraLoaded) {
-            registry.register(Aura.class, Lists.newArrayList(), new AuraHelper<Aura>(), new AuraRenderer());
+            registry.register(Aura.class, Lists.newArrayList(), new AuraHelper<>(), new AuraRenderer());
         }
         if(ModularMagic.botaniaLoaded) {
             registry.register(Mana.class, Lists.newArrayList(), new ManaHelper<Mana>(), new ManaRenderer());

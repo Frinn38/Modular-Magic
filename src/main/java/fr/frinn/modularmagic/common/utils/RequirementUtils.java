@@ -91,7 +91,7 @@ public class RequirementUtils {
 
     public static String getRequiredString(JsonObject json, String key, String requirement) {
         if(json.has(key) && json.get(key).isJsonPrimitive() && json.getAsJsonPrimitive(key).isString()) {
-            String s = json.getAsJsonObject(key).getAsString();
+            String s = json.getAsJsonPrimitive(key).getAsString();
             return s;
         }
         throw new JsonParseException("The component \'" + requirement + "\' expects a \'" + key + "\' string entry !");
@@ -100,7 +100,7 @@ public class RequirementUtils {
     @Nullable
     public static String getOptionalString(JsonObject json, String key) {
         if(json.has(key) && json.get(key).isJsonPrimitive() && json.getAsJsonPrimitive(key).isString()) {
-            String s = json.getAsJsonObject(key).getAsString();
+            String s = json.getAsJsonPrimitive(key).getAsString();
             return s;
         }
         return null;
@@ -151,7 +151,14 @@ public class RequirementUtils {
 
     public static EnumDemonWillType getWillType(JsonObject json, String key, String requirement) {
         String s = getRequiredString(json, key, requirement);
-        EnumDemonWillType willType = EnumDemonWillType.valueOf(s);
+        EnumDemonWillType willType = null;
+        switch (s) {
+            case "raw": willType = EnumDemonWillType.DEFAULT; break;
+            case "corrosive": willType = EnumDemonWillType.CORROSIVE; break;
+            case "destructive": willType = EnumDemonWillType.DESTRUCTIVE; break;
+            case "steadfast": willType = EnumDemonWillType.STEADFAST; break;
+            case "vengeful": willType = EnumDemonWillType.VENGEFUL; break;
+        }
         if(willType != null)
             return willType;
         else

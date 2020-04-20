@@ -118,6 +118,12 @@ public class MagicPrimer {
     }
 
     @ZenMethod
+    public static RecipePrimer addRainbowInput(RecipePrimer primer) {
+        primer.appendComponent(new RequirementRainbow(IOType.INPUT));
+        return primer;
+    }
+
+    @ZenMethod
     public static RecipePrimer addLifeEssenceInput(RecipePrimer primer, int amount, boolean perTick) {
         if(amount > 0)
             primer.appendComponent(new RequirementLifeEssence(IOType.INPUT, amount, perTick));

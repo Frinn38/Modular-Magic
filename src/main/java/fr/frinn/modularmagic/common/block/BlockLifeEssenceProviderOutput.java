@@ -78,7 +78,7 @@ public class BlockLifeEssenceProviderOutput extends BlockMachineComponent {
     @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileLifeEssenceProvider.Input();
+        return new TileLifeEssenceProvider.Output();
     }
 
     @Nullable

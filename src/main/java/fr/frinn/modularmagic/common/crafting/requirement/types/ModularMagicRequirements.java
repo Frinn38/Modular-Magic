@@ -15,6 +15,7 @@ public class ModularMagicRequirements {
     public static final ResourceLocation KEY_REQUIREMENT_CONSTELLATION = new ResourceLocation(ModularMagic.MODID, "constellation");
     public static final ResourceLocation KEY_REQUIREMENT_GRID = new ResourceLocation(ModularMagic.MODID, "grid");
     public static final ResourceLocation KEY_REQUIREMENT_LIFE_ESSENCE = new ResourceLocation(ModularMagic.MODID, "lifeessence");
+    public static final ResourceLocation KEY_REQUIREMENT_RAINBOW = new ResourceLocation(ModularMagic.MODID, "rainbow");
     public static final ResourceLocation KEY_REQUIREMENT_STARLIGHT = new ResourceLocation(ModularMagic.MODID, "starlight");
     public static final ResourceLocation KEY_REQUIREMENT_WILL = new ResourceLocation(ModularMagic.MODID, "will");
     public static final ResourceLocation KEY_REQUIREMENT_MANA = new ResourceLocation(ModularMagic.MODID, "mana");
@@ -30,6 +31,7 @@ public class ModularMagicRequirements {
         }
         if(ModularMagic.extraUtils2Loaded) {
             registerRequirement(new RequirementTypeGrid(), KEY_REQUIREMENT_GRID);
+            registerRequirement(new RequirementTypeRainbow(), KEY_REQUIREMENT_RAINBOW);
         }
         if(ModularMagic.naturesauraLoaded) {
             registerRequirement(new RequirementTypeAura(), KEY_REQUIREMENT_AURA);

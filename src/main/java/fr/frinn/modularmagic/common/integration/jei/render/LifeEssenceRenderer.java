@@ -28,7 +28,7 @@ public class LifeEssenceRenderer implements IIngredientRenderer<LifeEssence> {
 
     @Override
     public List<String> getTooltip(Minecraft minecraft, LifeEssence ingredient, ITooltipFlag tooltipFlag) {
-        ArrayList<String> tooltip = new ArrayList<String>();
+        List<String> tooltip = new ArrayList<>();
         tooltip.add(I18n.format("info.modularmagic.lifeessence"));
         if(!ingredient.isPerTick())
             tooltip.add(ingredient.getEssenceAmount() + I18n.format("info.modularmagic.lp"));

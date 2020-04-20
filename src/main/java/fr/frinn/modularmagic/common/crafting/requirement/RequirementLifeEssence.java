@@ -3,6 +3,7 @@ package fr.frinn.modularmagic.common.crafting.requirement;
 import WayofTime.bloodmagic.core.data.SoulNetwork;
 import WayofTime.bloodmagic.core.data.SoulTicket;
 import com.google.common.collect.Lists;
+import fr.frinn.modularmagic.common.crafting.component.ModularMagicComponents;
 import fr.frinn.modularmagic.common.crafting.requirement.types.ModularMagicRequirements;
 import fr.frinn.modularmagic.common.crafting.requirement.types.RequirementTypeLifeEssence;
 import fr.frinn.modularmagic.common.integration.jei.component.JEIComponentLifeEssence;
@@ -14,6 +15,7 @@ import hellfirepvp.modularmachinery.common.crafting.helper.ProcessingComponent;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.modularmachinery.common.lib.RegistriesMM;
 import hellfirepvp.modularmachinery.common.machine.IOType;
+import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
 
 import javax.annotation.Nonnull;
@@ -35,7 +37,10 @@ public class RequirementLifeEssence extends ComponentRequirement.PerTick<LifeEss
 
     @Override
     public boolean isValidComponent(ProcessingComponent component, RecipeCraftingContext ctx) {
-        return component.getComponent().getContainerProvider() instanceof TileLifeEssenceProvider;
+        MachineComponent cpn = component.getComponent();
+        return cpn.getContainerProvider() instanceof TileLifeEssenceProvider &&
+                cpn.getComponentType().equals(RegistriesMM.COMPONENT_TYPE_REGISTRY.getValue(ModularMagicComponents.KEY_COMPONENT_LIFE_ESSENCE)) &&
+                cpn.getIOType() == getActionType();
     }
 
     @Override
@@ -64,6 +69,9 @@ public class RequirementLifeEssence extends ComponentRequirement.PerTick<LifeEss
     @Nonnull
     @Override
     public CraftCheck canStartCrafting(ProcessingComponent component, RecipeCraftingContext context, List restrictions) {
+        if(!isValidComponent(component, context))
+            return CraftCheck.failure(getMissingComponentErrorMessage(getActionType()));
+
         TileLifeEssenceProvider essenceProvider = (TileLifeEssenceProvider)component.getComponent().getContainerProvider();
 
         if(essenceProvider.getSoulNetwork() == null)

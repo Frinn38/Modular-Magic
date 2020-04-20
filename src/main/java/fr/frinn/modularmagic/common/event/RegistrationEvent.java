@@ -9,9 +9,7 @@ import hellfirepvp.modularmachinery.common.crafting.ComponentType;
 import hellfirepvp.modularmachinery.common.crafting.requirement.type.RequirementType;
 import hellfirepvp.modularmachinery.common.item.ItemDynamicColor;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -30,10 +28,11 @@ public class RegistrationEvent {
 
     @SubscribeEvent
     public static void registerBlockModels(ModelRegistryEvent event) {
-        BlockColors blockColors = Minecraft.getMinecraft().getBlockColors();
         for(Block block : ModularMagicBlocks.BLOCKS) {
-            if(block instanceof BlockDynamicColor)
+            if(block instanceof BlockDynamicColor) {
                 ModularMagicBlocks.COLOR_BLOCKS.add((BlockDynamicColor)block);
+            }
+
         }
     }
 

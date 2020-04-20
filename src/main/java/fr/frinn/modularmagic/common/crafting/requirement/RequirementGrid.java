@@ -1,6 +1,7 @@
 package fr.frinn.modularmagic.common.crafting.requirement;
 
 import com.google.common.collect.Lists;
+import fr.frinn.modularmagic.common.crafting.component.ComponentGrid;
 import fr.frinn.modularmagic.common.crafting.requirement.types.ModularMagicRequirements;
 import fr.frinn.modularmagic.common.crafting.requirement.types.RequirementTypeGrid;
 import fr.frinn.modularmagic.common.integration.jei.component.JEIComponentGrid;
@@ -9,6 +10,7 @@ import fr.frinn.modularmagic.common.tile.TileGridProvider;
 import hellfirepvp.modularmachinery.common.crafting.helper.*;
 import hellfirepvp.modularmachinery.common.lib.RegistriesMM;
 import hellfirepvp.modularmachinery.common.machine.IOType;
+import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
 
 import javax.annotation.Nonnull;
@@ -24,8 +26,11 @@ public class RequirementGrid extends ComponentRequirement.PerTick<Grid, Requirem
     }
 
     @Override
-    public boolean isValidComponent(ProcessingComponent<?> component, RecipeCraftingContext ctx) {
-        return component.getComponent().getContainerProvider() instanceof TileGridProvider;
+    public boolean isValidComponent(ProcessingComponent component, RecipeCraftingContext ctx) {
+        MachineComponent cpn = component.getComponent();
+        return cpn.getContainerProvider() instanceof TileGridProvider &&
+                cpn.getComponentType() instanceof ComponentGrid &&
+                cpn.getIOType() == getActionType();
     }
 
     @Override

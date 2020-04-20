@@ -11,11 +11,11 @@ import java.util.ArrayList;
 
 public class ModularMagicBlocks {
 
-    public static ArrayList<Block> BLOCKS = new ArrayList<Block>();
-    public static  ArrayList<BlockDynamicColor> COLOR_BLOCKS = new ArrayList<>();
+    public static ArrayList<Block> BLOCKS = new ArrayList<>();
+    public static ArrayList<BlockDynamicColor> COLOR_BLOCKS = new ArrayList<>();
 
     public static void initBlocks() {
-        if(ModularMagic.bloodmagicLoaded) {
+        if (ModularMagic.bloodmagicLoaded) {
             BlockWillProviderInput blockWillProviderInput = new BlockWillProviderInput();
             BlockWillProviderOutput blockWillProviderOutput = new BlockWillProviderOutput();
             BlockLifeEssenceProviderInput blockLifeEssenceProviderInput = new BlockLifeEssenceProviderInput();
@@ -27,23 +27,21 @@ public class ModularMagicBlocks {
             registerBlock("blocklifeessenceprovideroutput", blockLifeEssenceProviderOutput, new ItemBlockMachineComponent(blockLifeEssenceProviderOutput));
         }
 
-        if(ModularMagic.thaumcraftLoaded) {
-            BlockAspectProviderInput blockAspectProviderInput = new BlockAspectProviderInput();
-            BlockAspectProviderOutput blockAspectProviderOutput = new BlockAspectProviderOutput();
-
-            registerBlock("blockaspectproviderinput", blockAspectProviderInput, new ItemBlockMachineComponent(blockAspectProviderInput));
-            registerBlock("blockaspectprovideroutput", blockAspectProviderOutput, new ItemBlockMachineComponent(blockAspectProviderOutput));
+        if (ModularMagic.thaumcraftLoaded) {
+            ThaumcraftBlocks.registerBlocks();
         }
 
-        if(ModularMagic.extraUtils2Loaded) {
+        if (ModularMagic.extraUtils2Loaded) {
             BlockGridProviderInput blockGridProviderInput = new BlockGridProviderInput();
             BlockGridProviderOutput blockGridProviderOutput = new BlockGridProviderOutput();
+            BlockRainbowProvider blockRainbowProvider = new BlockRainbowProvider();
 
             registerBlock("blockgridproviderinput", blockGridProviderInput, new ItemBlockMachineComponent(blockGridProviderInput));
             registerBlock("blockgridprovideroutput", blockGridProviderOutput, new ItemBlockMachineComponent(blockGridProviderOutput));
+            registerBlock("blockrainbowprovider", blockRainbowProvider, new ItemBlockMachineComponent(blockRainbowProvider));
         }
 
-        if(ModularMagic.astralLoaded) {
+        if (ModularMagic.astralLoaded) {
             BlockStarlightProviderInput blockStarlightProviderInput = new BlockStarlightProviderInput();
             BlockStarlightProviderOutput blockStarlightProviderOutput = new BlockStarlightProviderOutput();
             BlockConstellationProvider blockConstellationProvider = new BlockConstellationProvider();
@@ -53,16 +51,16 @@ public class ModularMagicBlocks {
             registerBlock("blockconstellationprovider", blockConstellationProvider, new ItemBlockMachineComponent(blockConstellationProvider));
         }
 
-        if(ModularMagic.naturesauraLoaded) {
+        if (ModularMagic.naturesauraLoaded) {
             BlockAuraProviderInput blockAuraProviderInput = new BlockAuraProviderInput();
             BlockAuraProviderOutput blockAuraProviderOutput = new BlockAuraProviderOutput();
 
             registerBlock("blockauraproviderinput", blockAuraProviderInput, new ItemBlockMachineComponent(blockAuraProviderInput));
-            registerBlock("blockauraproviderOutput", blockAuraProviderOutput, new ItemBlockMachineComponent(blockAuraProviderOutput));
+            registerBlock("blockauraprovideroutput", blockAuraProviderOutput, new ItemBlockMachineComponent(blockAuraProviderOutput));
         }
     }
 
-    private static void registerBlock(String id, Block block, ItemBlock itemBlock) {
+    protected static void registerBlock(String id, Block block, ItemBlock itemBlock) {
         block.setRegistryName(ModularMagic.MODID, id);
         block.setUnlocalizedName(id);
         BLOCKS.add(block);

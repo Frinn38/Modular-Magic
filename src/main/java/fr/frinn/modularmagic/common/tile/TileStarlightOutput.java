@@ -3,6 +3,7 @@ package fr.frinn.modularmagic.common.tile;
 import com.google.common.collect.Lists;
 import fr.frinn.modularmagic.ModularMagic;
 import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentStarlightProviderOutput;
+import hellfirepvp.astralsorcery.common.auxiliary.link.ILinkableTile;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
 import hellfirepvp.astralsorcery.common.constellation.IWeakConstellation;
 import hellfirepvp.astralsorcery.common.starlight.IIndependentStarlightSource;
@@ -27,7 +28,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class TileStarlightOutput extends TileSourceBase implements MachineComponentTile {
+public class TileStarlightOutput extends TileSourceBase implements MachineComponentTile, IStarlightSource, ILinkableTile {
 
     private float starlightProduced = 0.0F;
     public int tick;

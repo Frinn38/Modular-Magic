@@ -7,11 +7,11 @@ import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentAuraPr
 import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
-import net.minecraft.tileentity.TileEntity;
+import hellfirepvp.modularmachinery.common.tiles.base.TileColorableMachineComponent;
 
 import javax.annotation.Nullable;
 
-public class TileAuraProvider extends TileEntity implements MachineComponentTile {
+public class TileAuraProvider extends TileColorableMachineComponent implements MachineComponentTile {
 
     public void addAura(Aura aura) {
         if(aura.getType() == IAuraChunk.getAuraChunk(world, pos).getType()) {

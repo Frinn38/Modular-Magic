@@ -1,6 +1,7 @@
 package fr.frinn.modularmagic.common.crafting.requirement;
 
 import com.google.common.collect.Lists;
+import fr.frinn.modularmagic.common.crafting.component.ComponentStarlight;
 import fr.frinn.modularmagic.common.crafting.requirement.types.ModularMagicRequirements;
 import fr.frinn.modularmagic.common.crafting.requirement.types.RequirementTypeStarlight;
 import fr.frinn.modularmagic.common.integration.jei.component.JEIComponentStarlight;
@@ -13,6 +14,7 @@ import hellfirepvp.modularmachinery.common.crafting.helper.ProcessingComponent;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.modularmachinery.common.lib.RegistriesMM;
 import hellfirepvp.modularmachinery.common.machine.IOType;
+import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
 
 import javax.annotation.Nonnull;
@@ -28,9 +30,11 @@ public class RequirementStarlight extends ComponentRequirement.PerTick<Starlight
     }
 
     @Override
-    public boolean isValidComponent(ProcessingComponent<?> component, RecipeCraftingContext ctx) {
-        return component.getComponent().getContainerProvider() instanceof TileStarlightInput ||
-                component.getComponent().getContainerProvider() instanceof TileStarlightOutput;
+    public boolean isValidComponent(ProcessingComponent component, RecipeCraftingContext ctx) {
+        MachineComponent cpn = component.getComponent();
+        return (cpn.getContainerProvider() instanceof TileStarlightInput || cpn.getContainerProvider() instanceof TileStarlightOutput) &&
+                cpn.getComponentType() instanceof ComponentStarlight &&
+                cpn.getIOType() == getActionType();
     }
 
     @Override

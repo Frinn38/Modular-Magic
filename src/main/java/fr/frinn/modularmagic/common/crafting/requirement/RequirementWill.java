@@ -2,6 +2,7 @@ package fr.frinn.modularmagic.common.crafting.requirement;
 
 import WayofTime.bloodmagic.soul.EnumDemonWillType;
 import com.google.common.collect.Lists;
+import fr.frinn.modularmagic.common.crafting.component.ComponentWill;
 import fr.frinn.modularmagic.common.crafting.requirement.types.ModularMagicRequirements;
 import fr.frinn.modularmagic.common.crafting.requirement.types.RequirementTypeWill;
 import fr.frinn.modularmagic.common.integration.jei.component.JEIComponentWill;
@@ -13,6 +14,7 @@ import hellfirepvp.modularmachinery.common.crafting.helper.ProcessingComponent;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.modularmachinery.common.lib.RegistriesMM;
 import hellfirepvp.modularmachinery.common.machine.IOType;
+import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
 
 import javax.annotation.Nonnull;
@@ -34,8 +36,11 @@ public class RequirementWill extends ComponentRequirement<DemonWill, Requirement
     }
 
     @Override
-    public boolean isValidComponent(ProcessingComponent<?> component, RecipeCraftingContext ctx) {
-        return component.getComponent().getContainerProvider() instanceof TileWillProvider;
+    public boolean isValidComponent(ProcessingComponent component, RecipeCraftingContext ctx) {
+        MachineComponent cpn = component.getComponent();
+        return cpn.getContainerProvider() instanceof TileWillProvider &&
+                cpn.getComponentType() instanceof ComponentWill &&
+                cpn.getIOType() == getActionType();
     }
 
     @Override

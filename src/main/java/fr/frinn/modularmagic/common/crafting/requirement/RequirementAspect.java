@@ -1,6 +1,7 @@
 package fr.frinn.modularmagic.common.crafting.requirement;
 
 import com.google.common.collect.Lists;
+import fr.frinn.modularmagic.common.crafting.component.ComponentAspect;
 import fr.frinn.modularmagic.common.crafting.requirement.types.ModularMagicRequirements;
 import fr.frinn.modularmagic.common.crafting.requirement.types.RequirementTypeAspect;
 import fr.frinn.modularmagic.common.integration.jei.component.JEIComponentAspect;
@@ -11,6 +12,7 @@ import hellfirepvp.modularmachinery.common.crafting.helper.ProcessingComponent;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.modularmachinery.common.lib.RegistriesMM;
 import hellfirepvp.modularmachinery.common.machine.IOType;
+import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -33,7 +35,10 @@ public class RequirementAspect extends ComponentRequirement<AspectList, Requirem
 
     @Override
     public boolean isValidComponent(ProcessingComponent component, RecipeCraftingContext ctx) {
-        return component.getComponent().getContainerProvider() instanceof TileAspectProvider;
+        MachineComponent cpn = component.getComponent();
+        return cpn.getContainerProvider() instanceof TileAspectProvider &&
+                cpn.getComponentType() instanceof ComponentAspect &&
+                cpn.getIOType() == getActionType();
     }
 
     @Override

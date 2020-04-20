@@ -1,6 +1,7 @@
 package fr.frinn.modularmagic.common.crafting.requirement;
 
 import com.google.common.collect.Lists;
+import fr.frinn.modularmagic.common.crafting.component.ComponentConstellation;
 import fr.frinn.modularmagic.common.crafting.requirement.types.ModularMagicRequirements;
 import fr.frinn.modularmagic.common.crafting.requirement.types.RequirementTypeConstellation;
 import fr.frinn.modularmagic.common.integration.jei.component.JEIComponentConstellation;
@@ -10,6 +11,7 @@ import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.modularmachinery.common.crafting.helper.*;
 import hellfirepvp.modularmachinery.common.lib.RegistriesMM;
 import hellfirepvp.modularmachinery.common.machine.IOType;
+import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.util.ResultChance;
 
 import javax.annotation.Nonnull;
@@ -25,8 +27,11 @@ public class RequirementConstellation extends ComponentRequirement<Constellation
     }
 
     @Override
-    public boolean isValidComponent(ProcessingComponent<?> component, RecipeCraftingContext ctx) {
-        return component.getComponent().getContainerProvider() instanceof TileConstellationProvider;
+    public boolean isValidComponent(ProcessingComponent component, RecipeCraftingContext ctx) {
+        MachineComponent cpn = component.getComponent();
+        return cpn.getContainerProvider() instanceof TileConstellationProvider &&
+                cpn.getComponentType() instanceof ComponentConstellation &&
+                cpn.getIOType() == getActionType();
     }
 
     @Override

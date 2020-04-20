@@ -32,6 +32,7 @@ public class CommonProxy {
         if(ModularMagic.extraUtils2Loaded) {
             GameRegistry.registerTileEntity(TileGridProvider.Input.class, new ResourceLocation(ModularMagic.MODID, "tilegridproviderinput"));
             GameRegistry.registerTileEntity(TileGridProvider.Output.class, new ResourceLocation(ModularMagic.MODID, "tilegridprovideroutput"));
+            GameRegistry.registerTileEntity(TileRainbowProvider.class, new ResourceLocation(ModularMagic.MODID, "tilerainbowprovider"));
         }
         if(ModularMagic.astralLoaded) {
             GameRegistry.registerTileEntity(TileStarlightInput.class, new ResourceLocation(ModularMagic.MODID, "tilestarlightinput"));

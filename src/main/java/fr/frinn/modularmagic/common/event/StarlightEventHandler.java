@@ -5,7 +5,7 @@ import fr.frinn.modularmagic.common.tile.TileStarlightOutput;
 import hellfirepvp.astralsorcery.common.event.StarlightNetworkEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class EventHandlerModularMagic {
+public class StarlightEventHandler {
 
     @SubscribeEvent
     public static void onStarlightTransmissionRegister(StarlightNetworkEvent.TransmissionRegister event) {

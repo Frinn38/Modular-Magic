@@ -6,23 +6,41 @@ import com.rwtema.extrautils2.power.IWorldPowerMultiplier;
 import com.rwtema.extrautils2.power.PowerManager;
 import com.rwtema.extrautils2.tile.TilePower;
 import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentGridProvider;
+import hellfirepvp.modularmachinery.common.data.Config;
 import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
+import hellfirepvp.modularmachinery.common.tiles.base.ColorableMachineTile;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class TileGridProvider extends TilePower implements IWorldPowerMultiplier, MachineComponentTile, ITickable {
+public class TileGridProvider extends TilePower implements IWorldPowerMultiplier, ColorableMachineTile, MachineComponentTile, ITickable {
 
     private float power;
     private int tick;
+    private int color = Config.machineColor;
+
+    @Override
+    public int getMachineColor() {
+        return this.color;
+    }
+
+    @Override
+    public void setMachineColor(int newColor) {
+        this.color = newColor;
+        IBlockState thisState = world.getBlockState(pos);
+        world.notifyBlockUpdate(pos, thisState, thisState, 3);
+        markDirty();
+    }
 
     @Override
     public float multiplier(@Nullable World world) {
@@ -76,6 +94,34 @@ public class TileGridProvider extends TilePower implements IWorldPowerMultiplier
         }
     }
 
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+
+        if(!compound.hasKey("casingColor")) {
+            color = Config.machineColor;
+        } else {
+            color = compound.getInteger("casingColor");
+        }
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound = super.writeToNBT(compound);
+
+        compound.setInteger("casingColor", this.color);
+
+        return compound;
+    }
+
+    @Override
+    public final SPacketUpdateTileEntity getUpdatePacket() {
+        NBTTagCompound compound = new NBTTagCompound();
+        super.writeToNBT(compound);
+        compound = writeToNBT(compound);
+        return new SPacketUpdateTileEntity(getPos(), 255, compound);
+    }
+
     @Nullable
     @Override
     public MachineComponent provideComponent() {
@@ -95,7 +141,7 @@ public class TileGridProvider extends TilePower implements IWorldPowerMultiplier
         }
     }
 
-    public static class Output extends TileGridProvider implements MachineComponentTile {
+    public static class Output extends TileGridProvider {
         @Override
         public IWorldPowerMultiplier getMultiplier() {
             return this;

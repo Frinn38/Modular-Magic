@@ -13,11 +13,14 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.base.SimpleIndepe
 import hellfirepvp.astralsorcery.common.starlight.transmission.base.SimpleTransmissionSourceNode;
 import hellfirepvp.astralsorcery.common.starlight.transmission.registry.SourceClassRegistry;
 import hellfirepvp.astralsorcery.common.tile.base.TileSourceBase;
+import hellfirepvp.modularmachinery.common.data.Config;
 import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.TileMachineController;
+import hellfirepvp.modularmachinery.common.tiles.base.ColorableMachineTile;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -28,12 +31,24 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class TileStarlightOutput extends TileSourceBase implements MachineComponentTile, IStarlightSource, ILinkableTile {
+public class TileStarlightOutput extends TileSourceBase implements MachineComponentTile, ColorableMachineTile, IStarlightSource, ILinkableTile {
 
     private float starlightProduced = 0.0F;
     public int tick;
+    private int color = Config.machineColor;
 
     public IWeakConstellation constellation = ConstellationRegistry.getWeakConstellations().get(0);
+
+    @Override
+    public int getMachineColor() {
+        return this.color;
+    }
+
+    @Override
+    public void setMachineColor(int newColor) {
+        this.color = newColor;
+        this.markForUpdate();
+    }
 
     public float getStarlightProduced() {
         return starlightProduced;
@@ -88,6 +103,20 @@ public class TileStarlightOutput extends TileSourceBase implements MachineCompon
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void writeCustomNBT(NBTTagCompound compound) {
+        super.writeCustomNBT(compound);
+
+        compound.setInteger("casingColor", color);
+    }
+
+    @Override
+    public void readCustomNBT(NBTTagCompound compound) {
+        super.readCustomNBT(compound);
+
+        color = compound.getInteger("casingColor");
     }
 
     public static class IndependantStarlightProviderSource extends SimpleIndependentSource {

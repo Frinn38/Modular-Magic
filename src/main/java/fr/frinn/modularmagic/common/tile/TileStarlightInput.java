@@ -11,8 +11,10 @@ import hellfirepvp.astralsorcery.common.starlight.transmission.registry.Transmis
 import hellfirepvp.astralsorcery.common.tile.base.TileReceiverBase;
 import hellfirepvp.astralsorcery.common.util.MiscUtils;
 import hellfirepvp.astralsorcery.common.util.SkyCollectionHelper;
+import hellfirepvp.modularmachinery.common.data.Config;
 import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
+import hellfirepvp.modularmachinery.common.tiles.base.ColorableMachineTile;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -21,9 +23,21 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileStarlightInput extends TileReceiverBase implements MachineComponentTile {
+public class TileStarlightInput extends TileReceiverBase implements MachineComponentTile, ColorableMachineTile {
 
     private int starlightAmount = 0;
+    private int color = Config.machineColor;
+
+    @Override
+    public int getMachineColor() {
+        return this.color;
+    }
+
+    @Override
+    public void setMachineColor(int newColor) {
+        this.color = newColor;
+        this.markForUpdate();
+    }
 
     @Nullable
     @Override
@@ -108,6 +122,7 @@ public class TileStarlightInput extends TileReceiverBase implements MachineCompo
         super.writeCustomNBT(compound);
 
         compound.setInteger("starlight", starlightAmount);
+        compound.setInteger("casingColor", color);
     }
 
     @Override
@@ -115,6 +130,7 @@ public class TileStarlightInput extends TileReceiverBase implements MachineCompo
         super.readCustomNBT(compound);
 
         starlightAmount = compound.getInteger("starlight");
+        color = compound.getInteger("casingColor");
     }
 
     public static class TransmissionReceiverStarlightProvider extends SimpleTransmissionReceiver {

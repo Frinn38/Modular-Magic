@@ -1,23 +1,40 @@
 package fr.frinn.modularmagic.common.tile;
 
 import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentAspectProvider;
+import hellfirepvp.modularmachinery.common.data.Config;
 import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
+import hellfirepvp.modularmachinery.common.tiles.base.ColorableMachineTile;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
-import hellfirepvp.modularmachinery.common.tiles.base.TileColorableMachineComponent;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.IEssentiaTransport;
-import thaumcraft.api.blocks.ILabelable;
 import thaumcraft.common.tiles.essentia.TileJarFillable;
 
 import javax.annotation.Nullable;
 
-public class TileAspectProvider extends TileJarFillable implements MachineComponentTile {
+public class TileAspectProvider extends TileJarFillable implements MachineComponentTile, ColorableMachineTile {
 
     private int maxAmount = 250;
+    private int color = Config.machineColor;
+
+    @Override
+    public int getMachineColor() {
+        return this.color;
+    }
+
+    @Override
+    public void setMachineColor(int newColor) {
+        this.color = newColor;
+        IBlockState thisState = world.getBlockState(pos);
+        world.notifyBlockUpdate(pos, thisState, thisState, 3);
+        markDirty();
+    }
 
     @Override
     public boolean canInputFrom(EnumFacing face) {
@@ -62,6 +79,39 @@ public class TileAspectProvider extends TileJarFillable implements MachineCompon
                 this.addToContainer(ta, ic.takeEssentia(ta, 1, face.getOpposite()));
             }
         }
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt = super.writeToNBT(nbt);
+        nbt.setInteger("casingColor", this.color);
+        return nbt;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        if(!nbt.hasKey("casingColor")) {
+            color = Config.machineColor;
+        } else {
+            color = nbt.getInteger("casingColor");
+        }
+    }
+
+    @Override
+    public final SPacketUpdateTileEntity getUpdatePacket() {
+        NBTTagCompound compound = new NBTTagCompound();
+        super.writeToNBT(compound);
+        compound = writeToNBT(compound);
+        return new SPacketUpdateTileEntity(getPos(), 255, compound);
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+        NBTTagCompound compound = new NBTTagCompound();
+        super.writeToNBT(compound);
+        compound = writeToNBT(compound);
+        return compound;
     }
 
     @Nullable

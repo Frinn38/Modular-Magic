@@ -1,8 +1,11 @@
 package fr.frinn.modularmagic.common.block;
 
 import fr.frinn.modularmagic.common.tile.TileAspectProvider;
+import fr.frinn.modularmagic.common.tile.TileLifeEssenceProvider;
+import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentAspectProvider;
 import hellfirepvp.modularmachinery.common.CommonProxy;
 import hellfirepvp.modularmachinery.common.block.BlockMachineComponent;
+import hellfirepvp.modularmachinery.common.tiles.base.ColorableMachineTile;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

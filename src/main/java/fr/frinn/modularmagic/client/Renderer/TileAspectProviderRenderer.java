@@ -3,13 +3,9 @@ package fr.frinn.modularmagic.client.Renderer;
 import fr.frinn.modularmagic.common.tile.TileAspectProvider;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
-import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.client.lib.UtilsFX;
 import thaumcraft.common.config.ModConfig;
-import thaumcraft.common.tiles.devices.TileJarBrain;
 import thaumcraft.common.tiles.essentia.TileJarFillable;
 
 public class TileAspectProviderRenderer extends TileEntitySpecialRenderer<TileAspectProvider> {

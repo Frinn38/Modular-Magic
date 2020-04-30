@@ -14,12 +14,20 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+import thaumcraft.common.tiles.essentia.TileJarFillable;
 
-@Mod(modid = ModularMagic.MODID, name = ModularMagic.NAME, version = ModularMagic.VERSION, dependencies = "required-after:modularmachinery")
+@Mod(modid = ModularMagic.MODID, name = ModularMagic.NAME, version = ModularMagic.VERSION, dependencies = ModularMagic.DEPENDENCIES)
 public class ModularMagic {
     public static final String MODID = "modularmagic";
     public static final String NAME = "Modular Magic";
-    public static final String VERSION = "1.6.0";
+    public static final String VERSION = "1.6.1";
+    public static final String DEPENDENCIES =
+            "required-after:modularmachinery;" +
+            "after:bloodmagic;" +
+            "after:extrautils2;" +
+            "after:naturesaura;" +
+            "after:botania;" +
+            "after:thaumcraft";
 
     public static boolean bloodmagicLoaded = false;
     public static boolean thaumcraftLoaded = false;
@@ -39,6 +47,7 @@ public class ModularMagic {
 
     public ModularMagic() {
         MinecraftForge.EVENT_BUS.register(RegistrationEvent.class);
+        new TileJarFillable();
     }
 
     @Mod.EventHandler

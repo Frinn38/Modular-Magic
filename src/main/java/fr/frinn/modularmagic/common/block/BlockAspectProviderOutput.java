@@ -55,7 +55,7 @@ public class BlockAspectProviderOutput extends BlockMachineComponent implements 
     @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileAspectProvider.Input();
+        return new TileAspectProvider.Output();
     }
 
     @Nullable

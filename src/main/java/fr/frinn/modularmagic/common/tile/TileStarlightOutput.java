@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class TileStarlightOutput extends TileSourceBase implements MachineComponentTile, ColorableMachineTile, IStarlightSource, ILinkableTile {
+public class TileStarlightOutput extends TileSourceBase implements MachineComponentTile, IStarlightSource, ILinkableTile {
 
     private float starlightProduced = 0.0F;
     public int tick;
@@ -39,12 +39,12 @@ public class TileStarlightOutput extends TileSourceBase implements MachineCompon
 
     public IWeakConstellation constellation = ConstellationRegistry.getWeakConstellations().get(0);
 
-    @Override
+
     public int getMachineColor() {
         return this.color;
     }
 
-    @Override
+
     public void setMachineColor(int newColor) {
         this.color = newColor;
         this.markForUpdate();

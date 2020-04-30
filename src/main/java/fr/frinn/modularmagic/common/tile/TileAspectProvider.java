@@ -4,7 +4,6 @@ import fr.frinn.modularmagic.common.tile.machinecomponent.MachineComponentAspect
 import hellfirepvp.modularmachinery.common.data.Config;
 import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
-import hellfirepvp.modularmachinery.common.tiles.base.ColorableMachineTile;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,17 +17,15 @@ import thaumcraft.common.tiles.essentia.TileJarFillable;
 
 import javax.annotation.Nullable;
 
-public class TileAspectProvider extends TileJarFillable implements MachineComponentTile, ColorableMachineTile {
+public class TileAspectProvider extends TileJarFillable implements MachineComponentTile {
 
     private int maxAmount = 250;
     private int color = Config.machineColor;
 
-    @Override
     public int getMachineColor() {
         return this.color;
     }
 
-    @Override
     public void setMachineColor(int newColor) {
         this.color = newColor;
         IBlockState thisState = world.getBlockState(pos);

@@ -23,17 +23,17 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileStarlightInput extends TileReceiverBase implements MachineComponentTile, ColorableMachineTile {
+public class TileStarlightInput extends TileReceiverBase implements MachineComponentTile {
 
     private int starlightAmount = 0;
     private int color = Config.machineColor;
 
-    @Override
+
     public int getMachineColor() {
         return this.color;
     }
 
-    @Override
+
     public void setMachineColor(int newColor) {
         this.color = newColor;
         this.markForUpdate();

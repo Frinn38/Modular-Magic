@@ -23,18 +23,18 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class TileGridProvider extends TilePower implements IWorldPowerMultiplier, ColorableMachineTile, MachineComponentTile, ITickable {
+public class TileGridProvider extends TilePower implements IWorldPowerMultiplier, MachineComponentTile, ITickable {
 
     private float power;
     private int tick;
     private int color = Config.machineColor;
 
-    @Override
+
     public int getMachineColor() {
         return this.color;
     }
 
-    @Override
+
     public void setMachineColor(int newColor) {
         this.color = newColor;
         IBlockState thisState = world.getBlockState(pos);
